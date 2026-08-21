@@ -75,7 +75,9 @@ that names a ticker differently only needs an entry there:
 
 Useful flags: `--exchanges LSE NYSE` to narrow the run, `--cache-hours 6` to
 reuse recently fetched history (worth it on rate-limited providers),
-`--limit 10` for a quick test, `--lookback-days 400` for more history.
+`--limit 10` for a quick test, `--lookback-days 400` for more history, and
+`--fail-under 90` to exit non-zero when a provider returns too little, so a
+scheduled run can fall back to another one.
 
 ### A note on the live providers
 
@@ -116,9 +118,16 @@ Daily, on a Mac or Linux box, after the London close (cron runs in local time):
 30 17 * * 1-5 cd /path/to/this/repo && /usr/bin/python3 fetch.py --provider stooq --quiet
 ```
 
-Or on a schedule in CI: `.github/workflows/refresh-snapshot.yml.example` is a
-ready-made GitHub Actions workflow that refreshes the snapshot and commits it.
-It is deliberately inert — rename it to `refresh-snapshot.yml` to switch it on.
+Or let GitHub do it: `.github/workflows/refresh-snapshot.yml` runs on weekdays
+at 17:30 UTC, pulls live prices and commits the new snapshot. You can also run
+it on demand from the repository's **Actions** tab. It tries stooq first and
+falls back to Yahoo if too few companies come back, using `--fail-under` as the
+gate:
+
+```bash
+python3 fetch.py --provider stooq --quiet --fail-under 90 \
+  || python3 fetch.py --provider yahoo --quiet --fail-under 90
+```
 
 ## Layout
 

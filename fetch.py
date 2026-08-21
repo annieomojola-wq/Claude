@@ -38,6 +38,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--seed", default="2026", help="demo provider seed")
     parser.add_argument("--out", default=os.path.join(ROOT, "data", "snapshot.json"))
     parser.add_argument("--quiet", action="store_true")
+    parser.add_argument("--fail-under", type=int, default=0, metavar="N",
+                        help="exit non-zero if fewer than N companies were priced, so a "
+                             "scheduled run can fall back to another provider")
     args = parser.parse_args(argv)
 
     def progress(msg: str) -> None:
@@ -74,6 +77,13 @@ def main(argv: list[str] | None = None) -> int:
     )
     if counts["errors"]:
         print("  failures:", ", ".join(sorted({e["ticker"] for e in result["meta"]["errors"]})), file=sys.stderr)
+
+    if args.fail_under and counts["tracked"] < args.fail_under:
+        print(
+            f"error: only {counts['tracked']} companies priced, expected at least {args.fail_under}",
+            file=sys.stderr,
+        )
+        return 1
     return 0
 
 

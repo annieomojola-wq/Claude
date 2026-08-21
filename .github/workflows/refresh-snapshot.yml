@@ -1,7 +1,7 @@
-# Scheduled snapshot refresh.
+# Scheduled snapshot refresh: pulls live closing prices and commits the result,
+# so the dashboard's data stays current without anyone running anything locally.
 #
-# Inert as shipped: rename this file to `refresh-snapshot.yml` to enable it.
-# It needs write permission on the repository so it can commit the new snapshot.
+# Run it by hand any time from the Actions tab ("Run workflow").
 
 name: Refresh snapshot
 
@@ -24,7 +24,11 @@ jobs:
           python-version: "3.11"
 
       - name: Fetch prices
-        run: python3 fetch.py --provider stooq --quiet
+        # stooq first (no API key). If it rate-limits the shared runner IPs and
+        # too few companies come back, fall back to Yahoo before giving up.
+        run: |
+          python3 fetch.py --provider stooq --quiet --fail-under 90 \
+            || python3 fetch.py --provider yahoo --quiet --fail-under 90
 
       - name: Commit the snapshot if it changed
         run: |
