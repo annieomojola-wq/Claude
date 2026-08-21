@@ -212,8 +212,10 @@ function renderMeta() {
 
   $('footer').textContent =
     `${meta.counts.tracked} companies tracked across ${meta.exchanges.join(', ')}. ` +
-    `Refresh the numbers with: python3 fetch.py --provider ${meta.is_demo ? 'stooq' : meta.provider}` +
-    (meta.basis === 'calendar' ? ' --basis calendar' : '');
+    (window.__SNAPSHOT__
+      ? `A static copy of the prices to ${formatDate(meta.latest_close)} — this page does not update itself.`
+      : `Refresh the numbers with: python3 fetch.py --provider ${meta.is_demo ? 'stooq' : meta.provider}` +
+        (meta.basis === 'calendar' ? ' --basis calendar' : ''));
 }
 
 function renderBanners() {
