@@ -264,17 +264,6 @@
     }
   },
   {
-    "ticker": "AHT",
-    "name": "Ashtead Group plc",
-    "sector": "Industrials",
-    "exchange": "LSE",
-    "currency": "GBX",
-    "symbols": {
-      "stooq": "aht.uk",
-      "yahoo": "AHT.L"
-    }
-  },
-  {
     "ticker": "ANTO",
     "name": "Antofagasta plc",
     "sector": "Materials",
@@ -437,6 +426,17 @@
     "symbols": {
       "stooq": "hln.uk",
       "yahoo": "HLN.L"
+    }
+  },
+  {
+    "ticker": "SGE",
+    "name": "Sage Group plc",
+    "sector": "Technology",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "sge.uk",
+      "yahoo": "SGE.L"
     }
   }
 ]
