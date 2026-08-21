@@ -27,7 +27,11 @@
   --ex-LSE: #1baf7a;
 
   --radius: 10px;
-  --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Plex Sans for text, Plex Mono for every figure: market data is read in
+     columns, and monospaced digits keep those columns honest. Both degrade to
+     the system stack if the webfont does not load. */
+  --font: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -102,7 +106,7 @@ body {
   padding: 28px 0 18px;
 }
 
-h1 { font-size: 22px; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: 22px; font-weight: 600; margin: 0; letter-spacing: -0.015em; }
 .sub { margin: 3px 0 0; color: var(--ink-2); font-size: 13px; }
 
 .topbar-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -183,7 +187,8 @@ select, input[type="search"] {
 
 input[type="range"] { width: 170px; accent-color: var(--series-1); }
 .range-row { display: flex; align-items: center; gap: 10px; }
-.range-value { font-variant-numeric: tabular-nums; color: var(--ink); min-width: 62px; }
+.range-value { color: var(--ink); min-width: 88px; }
+.range-value.num { font-family: var(--font-mono); font-size: 12px; }
 
 .check { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; padding-bottom: 7px; }
 .check input { accent-color: var(--series-1); width: 15px; height: 15px; }
@@ -238,7 +243,14 @@ input[type="range"] { width: 170px; accent-color: var(--series-1); }
   padding: 14px 16px 15px;
 }
 .kpi .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
-.kpi .value { font-size: 30px; font-weight: 600; letter-spacing: -0.02em; margin-top: 4px; line-height: 1.1; }
+.kpi .value {
+  font-family: var(--font-mono);
+  font-size: 29px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-top: 4px;
+  line-height: 1.1;
+}
 .kpi .value.down { color: var(--down); }
 .kpi .foot { font-size: 12px; color: var(--ink-2); margin-top: 3px; }
 
@@ -256,7 +268,7 @@ input[type="range"] { width: 170px; accent-color: var(--series-1); }
 }
 .bar-row:hover { background: var(--surface-sunk); }
 .bar-label { text-align: right; overflow: hidden; }
-.bar-label .tick { font-weight: 600; }
+.bar-label .tick { font-family: var(--font-mono); font-weight: 600; letter-spacing: -0.02em; }
 .bar-label .sub2 { color: var(--muted); font-size: 11px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .bar-track { position: relative; height: 22px; display: flex; align-items: center; }
@@ -268,6 +280,7 @@ input[type="range"] { width: 170px; accent-color: var(--series-1); }
 }
 .bar.up { background: var(--up); }
 .bar-value {
+  font-family: var(--font-mono);
   font-size: 12px;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -289,6 +302,7 @@ input[type="range"] { width: 170px; accent-color: var(--series-1); }
   padding-top: 6px;
   border-top: 1px solid var(--axis);
   color: var(--muted);
+  font-family: var(--font-mono);
   font-size: 11px;
   font-variant-numeric: tabular-nums;
 }
@@ -298,7 +312,7 @@ input[type="range"] { width: 170px; accent-color: var(--series-1); }
 .ex-row .ex-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
 .ex-row .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
 .ex-row .ex-name { font-weight: 500; }
-.ex-row .ex-val { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--ink-2); font-size: 12px; }
+.ex-row .ex-val { margin-left: auto; font-family: var(--font-mono); color: var(--ink-2); font-size: 12px; }
 .ex-track { height: 10px; background: var(--surface-sunk); border-radius: 5px; overflow: hidden; }
 .ex-fill { height: 100%; border-radius: 5px; }
 
@@ -325,7 +339,8 @@ thead th[aria-sort="ascending"]::after { content: " ↑"; }
 thead th[aria-sort="descending"]::after { content: " ↓"; }
 tbody tr { border-bottom: 1px solid var(--grid); }
 tbody tr:hover { background: var(--surface-sunk); }
-td.num { font-variant-numeric: tabular-nums; }
+td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 12.5px; }
+tbody td:first-child { font-family: var(--font-mono); font-weight: 500; }
 td .name { color: var(--ink-2); }
 .pill {
   display: inline-flex;
@@ -335,6 +350,7 @@ td .name { color: var(--ink-2); }
 }
 .pill .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
 .delta { font-variant-numeric: tabular-nums; font-weight: 500; }
+#tooltip .tt-row .v, .kpi .foot .num { font-family: var(--font-mono); }
 .delta.down { color: var(--down); }
 .delta.up { color: var(--up); }
 .badge {
@@ -373,7 +389,7 @@ td .name { color: var(--ink-2); }
 #tooltip .tt-sub { color: var(--muted); margin-bottom: 7px; }
 #tooltip .tt-row { display: flex; justify-content: space-between; gap: 18px; padding: 2px 0; }
 #tooltip .tt-row .k { color: var(--ink-2); display: inline-flex; align-items: center; gap: 6px; }
-#tooltip .tt-row .v { font-variant-numeric: tabular-nums; font-weight: 600; }
+#tooltip .tt-row .v { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 500; }
 #tooltip .key-line { width: 12px; height: 2px; border-radius: 1px; display: inline-block; }
 
 /* ---------- misc ---------- */

@@ -603,8 +603,9 @@ function buildSectorFilter() {
 function wireControls() {
   $('threshold').addEventListener('input', (event) => {
     state.filters.threshold = Number(event.target.value);
-    $('threshold-value').textContent =
-      state.filters.threshold === 0 ? 'any drop' : `${state.filters.threshold.toFixed(1)}% or more`;
+    const label = $('threshold-value');
+    label.textContent = state.filters.threshold === 0 ? 'any drop' : `${state.filters.threshold.toFixed(1)}% or more`;
+    label.classList.toggle('num', state.filters.threshold !== 0);
     render();
   });
 
@@ -690,6 +691,17 @@ function restoreTheme() {
 }
 
 async function load({ keepFrame = false } = {}) {
+  // A standalone export carries its snapshot inline - there is no file to fetch.
+  if (window.__SNAPSHOT__) {
+    state.snapshot = window.__SNAPSHOT__;
+    $('refresh').hidden = true;
+    renderBanners();
+    buildExchangeFilter();
+    buildSectorFilter();
+    render();
+    return;
+  }
+
   const main = document.querySelector('.shell');
   if (keepFrame) main.classList.add('is-loading'); // hold the old render, no skeleton flash
   try {

@@ -107,6 +107,17 @@ signed number, so nothing depends on colour alone. Exchange hues were validated
 for colour-blind separation in both light and dark themes. The theme follows
 your system setting; the **Theme** button overrides it.
 
+## A single shareable file
+
+```bash
+python3 export_html.py            # -> dist/dashboard.html
+```
+
+Inlines the stylesheet, the script and the current snapshot into one HTML file
+with no external dependencies. It opens straight from disk, survives being
+emailed, and can be dropped on any static host. It is a point-in-time copy —
+rebuild it after each `fetch.py` run.
+
 ## Keeping it up to date
 
 The dashboard reads `data/snapshot.json`. Rebuild it whenever you want fresh
@@ -134,6 +145,7 @@ python3 fetch.py --provider stooq --quiet --fail-under 90 \
 ```
 fetch.py               build data/snapshot.json
 serve.py               static server for the dashboard
+export_html.py         bundle everything into one shareable HTML file
 stockmon/
   analysis.py          month-on-month maths (both bases)
   providers.py         stooq / yahoo / twelvedata / demo
