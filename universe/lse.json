@@ -1,0 +1,442 @@
+[
+  {
+    "ticker": "SHEL",
+    "name": "Shell plc",
+    "sector": "Energy",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "shel.uk",
+      "yahoo": "SHEL.L"
+    }
+  },
+  {
+    "ticker": "AZN",
+    "name": "AstraZeneca plc",
+    "sector": "Health Care",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "azn.uk",
+      "yahoo": "AZN.L"
+    }
+  },
+  {
+    "ticker": "HSBA",
+    "name": "HSBC Holdings plc",
+    "sector": "Financials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "hsba.uk",
+      "yahoo": "HSBA.L"
+    }
+  },
+  {
+    "ticker": "ULVR",
+    "name": "Unilever plc",
+    "sector": "Consumer Staples",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "ulvr.uk",
+      "yahoo": "ULVR.L"
+    }
+  },
+  {
+    "ticker": "BP",
+    "name": "BP plc",
+    "sector": "Energy",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "bp.uk",
+      "yahoo": "BP.L"
+    }
+  },
+  {
+    "ticker": "RIO",
+    "name": "Rio Tinto plc",
+    "sector": "Materials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "rio.uk",
+      "yahoo": "RIO.L"
+    }
+  },
+  {
+    "ticker": "GSK",
+    "name": "GSK plc",
+    "sector": "Health Care",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "gsk.uk",
+      "yahoo": "GSK.L"
+    }
+  },
+  {
+    "ticker": "DGE",
+    "name": "Diageo plc",
+    "sector": "Consumer Staples",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "dge.uk",
+      "yahoo": "DGE.L"
+    }
+  },
+  {
+    "ticker": "BATS",
+    "name": "British American Tobacco plc",
+    "sector": "Consumer Staples",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "bats.uk",
+      "yahoo": "BATS.L"
+    }
+  },
+  {
+    "ticker": "GLEN",
+    "name": "Glencore plc",
+    "sector": "Materials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "glen.uk",
+      "yahoo": "GLEN.L"
+    }
+  },
+  {
+    "ticker": "REL",
+    "name": "RELX plc",
+    "sector": "Industrials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "rel.uk",
+      "yahoo": "REL.L"
+    }
+  },
+  {
+    "ticker": "LSEG",
+    "name": "London Stock Exchange Group plc",
+    "sector": "Financials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "lseg.uk",
+      "yahoo": "LSEG.L"
+    }
+  },
+  {
+    "ticker": "NG.",
+    "name": "National Grid plc",
+    "sector": "Utilities",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "ng.uk",
+      "yahoo": "NG.L"
+    }
+  },
+  {
+    "ticker": "VOD",
+    "name": "Vodafone Group plc",
+    "sector": "Communication Services",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "vod.uk",
+      "yahoo": "VOD.L"
+    }
+  },
+  {
+    "ticker": "BARC",
+    "name": "Barclays plc",
+    "sector": "Financials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "barc.uk",
+      "yahoo": "BARC.L"
+    }
+  },
+  {
+    "ticker": "LLOY",
+    "name": "Lloyds Banking Group plc",
+    "sector": "Financials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "lloy.uk",
+      "yahoo": "LLOY.L"
+    }
+  },
+  {
+    "ticker": "PRU",
+    "name": "Prudential plc",
+    "sector": "Financials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "pru.uk",
+      "yahoo": "PRU.L"
+    }
+  },
+  {
+    "ticker": "TSCO",
+    "name": "Tesco plc",
+    "sector": "Consumer Staples",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "tsco.uk",
+      "yahoo": "TSCO.L"
+    }
+  },
+  {
+    "ticker": "AAL",
+    "name": "Anglo American plc",
+    "sector": "Materials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "aal.uk",
+      "yahoo": "AAL.L"
+    }
+  },
+  {
+    "ticker": "IMB",
+    "name": "Imperial Brands plc",
+    "sector": "Consumer Staples",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "imb.uk",
+      "yahoo": "IMB.L"
+    }
+  },
+  {
+    "ticker": "CPG",
+    "name": "Compass Group plc",
+    "sector": "Consumer Discretionary",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "cpg.uk",
+      "yahoo": "CPG.L"
+    }
+  },
+  {
+    "ticker": "EXPN",
+    "name": "Experian plc",
+    "sector": "Industrials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "expn.uk",
+      "yahoo": "EXPN.L"
+    }
+  },
+  {
+    "ticker": "SSE",
+    "name": "SSE plc",
+    "sector": "Utilities",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "sse.uk",
+      "yahoo": "SSE.L"
+    }
+  },
+  {
+    "ticker": "RKT",
+    "name": "Reckitt Benckiser Group plc",
+    "sector": "Consumer Staples",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "rkt.uk",
+      "yahoo": "RKT.L"
+    }
+  },
+  {
+    "ticker": "AHT",
+    "name": "Ashtead Group plc",
+    "sector": "Industrials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "aht.uk",
+      "yahoo": "AHT.L"
+    }
+  },
+  {
+    "ticker": "ANTO",
+    "name": "Antofagasta plc",
+    "sector": "Materials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "anto.uk",
+      "yahoo": "ANTO.L"
+    }
+  },
+  {
+    "ticker": "BA.",
+    "name": "BAE Systems plc",
+    "sector": "Industrials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "ba.uk",
+      "yahoo": "BA.L"
+    }
+  },
+  {
+    "ticker": "STAN",
+    "name": "Standard Chartered plc",
+    "sector": "Financials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "stan.uk",
+      "yahoo": "STAN.L"
+    }
+  },
+  {
+    "ticker": "SGRO",
+    "name": "Segro plc",
+    "sector": "Real Estate",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "sgro.uk",
+      "yahoo": "SGRO.L"
+    }
+  },
+  {
+    "ticker": "III",
+    "name": "3i Group plc",
+    "sector": "Financials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "iii.uk",
+      "yahoo": "III.L"
+    }
+  },
+  {
+    "ticker": "WPP",
+    "name": "WPP plc",
+    "sector": "Communication Services",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "wpp.uk",
+      "yahoo": "WPP.L"
+    }
+  },
+  {
+    "ticker": "IHG",
+    "name": "InterContinental Hotels Group plc",
+    "sector": "Consumer Discretionary",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "ihg.uk",
+      "yahoo": "IHG.L"
+    }
+  },
+  {
+    "ticker": "NXT",
+    "name": "Next plc",
+    "sector": "Consumer Discretionary",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "nxt.uk",
+      "yahoo": "NXT.L"
+    }
+  },
+  {
+    "ticker": "SN.",
+    "name": "Smith & Nephew plc",
+    "sector": "Health Care",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "sn.uk",
+      "yahoo": "SN.L"
+    }
+  },
+  {
+    "ticker": "AV.",
+    "name": "Aviva plc",
+    "sector": "Financials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "av.uk",
+      "yahoo": "AV.L"
+    }
+  },
+  {
+    "ticker": "LGEN",
+    "name": "Legal & General Group plc",
+    "sector": "Financials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "lgen.uk",
+      "yahoo": "LGEN.L"
+    }
+  },
+  {
+    "ticker": "SMIN",
+    "name": "Smiths Group plc",
+    "sector": "Industrials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "smin.uk",
+      "yahoo": "SMIN.L"
+    }
+  },
+  {
+    "ticker": "BNZL",
+    "name": "Bunzl plc",
+    "sector": "Industrials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "bnzl.uk",
+      "yahoo": "BNZL.L"
+    }
+  },
+  {
+    "ticker": "RR.",
+    "name": "Rolls-Royce Holdings plc",
+    "sector": "Industrials",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "rr.uk",
+      "yahoo": "RR.L"
+    }
+  },
+  {
+    "ticker": "HLN",
+    "name": "Haleon plc",
+    "sector": "Health Care",
+    "exchange": "LSE",
+    "currency": "GBX",
+    "symbols": {
+      "stooq": "hln.uk",
+      "yahoo": "HLN.L"
+    }
+  }
+]

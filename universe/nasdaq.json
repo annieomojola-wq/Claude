@@ -1,0 +1,420 @@
+[
+  {
+    "ticker": "AAPL",
+    "name": "Apple Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "aapl.us",
+      "yahoo": "AAPL"
+    }
+  },
+  {
+    "ticker": "MSFT",
+    "name": "Microsoft Corp.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "msft.us",
+      "yahoo": "MSFT"
+    }
+  },
+  {
+    "ticker": "NVDA",
+    "name": "NVIDIA Corp.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "nvda.us",
+      "yahoo": "NVDA"
+    }
+  },
+  {
+    "ticker": "AMZN",
+    "name": "Amazon.com Inc.",
+    "sector": "Consumer Discretionary",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "amzn.us",
+      "yahoo": "AMZN"
+    }
+  },
+  {
+    "ticker": "GOOGL",
+    "name": "Alphabet Inc. Class A",
+    "sector": "Communication Services",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "googl.us",
+      "yahoo": "GOOGL"
+    }
+  },
+  {
+    "ticker": "META",
+    "name": "Meta Platforms Inc.",
+    "sector": "Communication Services",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "meta.us",
+      "yahoo": "META"
+    }
+  },
+  {
+    "ticker": "AVGO",
+    "name": "Broadcom Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "avgo.us",
+      "yahoo": "AVGO"
+    }
+  },
+  {
+    "ticker": "TSLA",
+    "name": "Tesla Inc.",
+    "sector": "Consumer Discretionary",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "tsla.us",
+      "yahoo": "TSLA"
+    }
+  },
+  {
+    "ticker": "COST",
+    "name": "Costco Wholesale Corp.",
+    "sector": "Consumer Staples",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "cost.us",
+      "yahoo": "COST"
+    }
+  },
+  {
+    "ticker": "PEP",
+    "name": "PepsiCo Inc.",
+    "sector": "Consumer Staples",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "pep.us",
+      "yahoo": "PEP"
+    }
+  },
+  {
+    "ticker": "NFLX",
+    "name": "Netflix Inc.",
+    "sector": "Communication Services",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "nflx.us",
+      "yahoo": "NFLX"
+    }
+  },
+  {
+    "ticker": "ADBE",
+    "name": "Adobe Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "adbe.us",
+      "yahoo": "ADBE"
+    }
+  },
+  {
+    "ticker": "AMD",
+    "name": "Advanced Micro Devices Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "amd.us",
+      "yahoo": "AMD"
+    }
+  },
+  {
+    "ticker": "CSCO",
+    "name": "Cisco Systems Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "csco.us",
+      "yahoo": "CSCO"
+    }
+  },
+  {
+    "ticker": "INTC",
+    "name": "Intel Corp.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "intc.us",
+      "yahoo": "INTC"
+    }
+  },
+  {
+    "ticker": "QCOM",
+    "name": "Qualcomm Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "qcom.us",
+      "yahoo": "QCOM"
+    }
+  },
+  {
+    "ticker": "TXN",
+    "name": "Texas Instruments Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "txn.us",
+      "yahoo": "TXN"
+    }
+  },
+  {
+    "ticker": "AMAT",
+    "name": "Applied Materials Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "amat.us",
+      "yahoo": "AMAT"
+    }
+  },
+  {
+    "ticker": "INTU",
+    "name": "Intuit Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "intu.us",
+      "yahoo": "INTU"
+    }
+  },
+  {
+    "ticker": "BKNG",
+    "name": "Booking Holdings Inc.",
+    "sector": "Consumer Discretionary",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "bkng.us",
+      "yahoo": "BKNG"
+    }
+  },
+  {
+    "ticker": "ISRG",
+    "name": "Intuitive Surgical Inc.",
+    "sector": "Health Care",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "isrg.us",
+      "yahoo": "ISRG"
+    }
+  },
+  {
+    "ticker": "ADI",
+    "name": "Analog Devices Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "adi.us",
+      "yahoo": "ADI"
+    }
+  },
+  {
+    "ticker": "MU",
+    "name": "Micron Technology Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "mu.us",
+      "yahoo": "MU"
+    }
+  },
+  {
+    "ticker": "LRCX",
+    "name": "Lam Research Corp.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "lrcx.us",
+      "yahoo": "LRCX"
+    }
+  },
+  {
+    "ticker": "REGN",
+    "name": "Regeneron Pharmaceuticals Inc.",
+    "sector": "Health Care",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "regn.us",
+      "yahoo": "REGN"
+    }
+  },
+  {
+    "ticker": "GILD",
+    "name": "Gilead Sciences Inc.",
+    "sector": "Health Care",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "gild.us",
+      "yahoo": "GILD"
+    }
+  },
+  {
+    "ticker": "VRTX",
+    "name": "Vertex Pharmaceuticals Inc.",
+    "sector": "Health Care",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "vrtx.us",
+      "yahoo": "VRTX"
+    }
+  },
+  {
+    "ticker": "MDLZ",
+    "name": "Mondelez International Inc.",
+    "sector": "Consumer Staples",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "mdlz.us",
+      "yahoo": "MDLZ"
+    }
+  },
+  {
+    "ticker": "PYPL",
+    "name": "PayPal Holdings Inc.",
+    "sector": "Financials",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "pypl.us",
+      "yahoo": "PYPL"
+    }
+  },
+  {
+    "ticker": "SBUX",
+    "name": "Starbucks Corp.",
+    "sector": "Consumer Discretionary",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "sbux.us",
+      "yahoo": "SBUX"
+    }
+  },
+  {
+    "ticker": "MRNA",
+    "name": "Moderna Inc.",
+    "sector": "Health Care",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "mrna.us",
+      "yahoo": "MRNA"
+    }
+  },
+  {
+    "ticker": "KLAC",
+    "name": "KLA Corp.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "klac.us",
+      "yahoo": "KLAC"
+    }
+  },
+  {
+    "ticker": "PANW",
+    "name": "Palo Alto Networks Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "panw.us",
+      "yahoo": "PANW"
+    }
+  },
+  {
+    "ticker": "SNPS",
+    "name": "Synopsys Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "snps.us",
+      "yahoo": "SNPS"
+    }
+  },
+  {
+    "ticker": "CDNS",
+    "name": "Cadence Design Systems Inc.",
+    "sector": "Technology",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "cdns.us",
+      "yahoo": "CDNS"
+    }
+  },
+  {
+    "ticker": "ABNB",
+    "name": "Airbnb Inc.",
+    "sector": "Consumer Discretionary",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "abnb.us",
+      "yahoo": "ABNB"
+    }
+  },
+  {
+    "ticker": "MAR",
+    "name": "Marriott International Inc.",
+    "sector": "Consumer Discretionary",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "mar.us",
+      "yahoo": "MAR"
+    }
+  },
+  {
+    "ticker": "CHTR",
+    "name": "Charter Communications Inc.",
+    "sector": "Communication Services",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "chtr.us",
+      "yahoo": "CHTR"
+    }
+  }
+]

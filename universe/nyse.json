@@ -1,0 +1,442 @@
+[
+  {
+    "ticker": "JPM",
+    "name": "JPMorgan Chase & Co.",
+    "sector": "Financials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "jpm.us",
+      "yahoo": "JPM"
+    }
+  },
+  {
+    "ticker": "V",
+    "name": "Visa Inc.",
+    "sector": "Financials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "v.us",
+      "yahoo": "V"
+    }
+  },
+  {
+    "ticker": "WMT",
+    "name": "Walmart Inc.",
+    "sector": "Consumer Staples",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "wmt.us",
+      "yahoo": "WMT"
+    }
+  },
+  {
+    "ticker": "XOM",
+    "name": "Exxon Mobil Corp.",
+    "sector": "Energy",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "xom.us",
+      "yahoo": "XOM"
+    }
+  },
+  {
+    "ticker": "UNH",
+    "name": "UnitedHealth Group Inc.",
+    "sector": "Health Care",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "unh.us",
+      "yahoo": "UNH"
+    }
+  },
+  {
+    "ticker": "JNJ",
+    "name": "Johnson & Johnson",
+    "sector": "Health Care",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "jnj.us",
+      "yahoo": "JNJ"
+    }
+  },
+  {
+    "ticker": "PG",
+    "name": "Procter & Gamble Co.",
+    "sector": "Consumer Staples",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "pg.us",
+      "yahoo": "PG"
+    }
+  },
+  {
+    "ticker": "MA",
+    "name": "Mastercard Inc.",
+    "sector": "Financials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "ma.us",
+      "yahoo": "MA"
+    }
+  },
+  {
+    "ticker": "HD",
+    "name": "Home Depot Inc.",
+    "sector": "Consumer Discretionary",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "hd.us",
+      "yahoo": "HD"
+    }
+  },
+  {
+    "ticker": "CVX",
+    "name": "Chevron Corp.",
+    "sector": "Energy",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "cvx.us",
+      "yahoo": "CVX"
+    }
+  },
+  {
+    "ticker": "ABBV",
+    "name": "AbbVie Inc.",
+    "sector": "Health Care",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "abbv.us",
+      "yahoo": "ABBV"
+    }
+  },
+  {
+    "ticker": "KO",
+    "name": "Coca-Cola Co.",
+    "sector": "Consumer Staples",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "ko.us",
+      "yahoo": "KO"
+    }
+  },
+  {
+    "ticker": "MRK",
+    "name": "Merck & Co. Inc.",
+    "sector": "Health Care",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "mrk.us",
+      "yahoo": "MRK"
+    }
+  },
+  {
+    "ticker": "BAC",
+    "name": "Bank of America Corp.",
+    "sector": "Financials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "bac.us",
+      "yahoo": "BAC"
+    }
+  },
+  {
+    "ticker": "PFE",
+    "name": "Pfizer Inc.",
+    "sector": "Health Care",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "pfe.us",
+      "yahoo": "PFE"
+    }
+  },
+  {
+    "ticker": "DIS",
+    "name": "Walt Disney Co.",
+    "sector": "Communication Services",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "dis.us",
+      "yahoo": "DIS"
+    }
+  },
+  {
+    "ticker": "MCD",
+    "name": "McDonald's Corp.",
+    "sector": "Consumer Discretionary",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "mcd.us",
+      "yahoo": "MCD"
+    }
+  },
+  {
+    "ticker": "CAT",
+    "name": "Caterpillar Inc.",
+    "sector": "Industrials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "cat.us",
+      "yahoo": "CAT"
+    }
+  },
+  {
+    "ticker": "GS",
+    "name": "Goldman Sachs Group Inc.",
+    "sector": "Financials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "gs.us",
+      "yahoo": "GS"
+    }
+  },
+  {
+    "ticker": "IBM",
+    "name": "International Business Machines",
+    "sector": "Technology",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "ibm.us",
+      "yahoo": "IBM"
+    }
+  },
+  {
+    "ticker": "BA",
+    "name": "Boeing Co.",
+    "sector": "Industrials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "ba.us",
+      "yahoo": "BA"
+    }
+  },
+  {
+    "ticker": "NKE",
+    "name": "Nike Inc.",
+    "sector": "Consumer Discretionary",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "nke.us",
+      "yahoo": "NKE"
+    }
+  },
+  {
+    "ticker": "LLY",
+    "name": "Eli Lilly and Co.",
+    "sector": "Health Care",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "lly.us",
+      "yahoo": "LLY"
+    }
+  },
+  {
+    "ticker": "ORCL",
+    "name": "Oracle Corp.",
+    "sector": "Technology",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "orcl.us",
+      "yahoo": "ORCL"
+    }
+  },
+  {
+    "ticker": "CRM",
+    "name": "Salesforce Inc.",
+    "sector": "Technology",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "crm.us",
+      "yahoo": "CRM"
+    }
+  },
+  {
+    "ticker": "WFC",
+    "name": "Wells Fargo & Co.",
+    "sector": "Financials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "wfc.us",
+      "yahoo": "WFC"
+    }
+  },
+  {
+    "ticker": "RTX",
+    "name": "RTX Corp.",
+    "sector": "Industrials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "rtx.us",
+      "yahoo": "RTX"
+    }
+  },
+  {
+    "ticker": "HON",
+    "name": "Honeywell International Inc.",
+    "sector": "Industrials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "hon.us",
+      "yahoo": "HON"
+    }
+  },
+  {
+    "ticker": "UPS",
+    "name": "United Parcel Service Inc.",
+    "sector": "Industrials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "ups.us",
+      "yahoo": "UPS"
+    }
+  },
+  {
+    "ticker": "T",
+    "name": "AT&T Inc.",
+    "sector": "Communication Services",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "t.us",
+      "yahoo": "T"
+    }
+  },
+  {
+    "ticker": "VZ",
+    "name": "Verizon Communications Inc.",
+    "sector": "Communication Services",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "vz.us",
+      "yahoo": "VZ"
+    }
+  },
+  {
+    "ticker": "LOW",
+    "name": "Lowe's Companies Inc.",
+    "sector": "Consumer Discretionary",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "low.us",
+      "yahoo": "LOW"
+    }
+  },
+  {
+    "ticker": "AXP",
+    "name": "American Express Co.",
+    "sector": "Financials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "axp.us",
+      "yahoo": "AXP"
+    }
+  },
+  {
+    "ticker": "BLK",
+    "name": "BlackRock Inc.",
+    "sector": "Financials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "blk.us",
+      "yahoo": "BLK"
+    }
+  },
+  {
+    "ticker": "C",
+    "name": "Citigroup Inc.",
+    "sector": "Financials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "c.us",
+      "yahoo": "C"
+    }
+  },
+  {
+    "ticker": "GE",
+    "name": "GE Aerospace",
+    "sector": "Industrials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "ge.us",
+      "yahoo": "GE"
+    }
+  },
+  {
+    "ticker": "MMM",
+    "name": "3M Co.",
+    "sector": "Industrials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "mmm.us",
+      "yahoo": "MMM"
+    }
+  },
+  {
+    "ticker": "SPGI",
+    "name": "S&P Global Inc.",
+    "sector": "Financials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "spgi.us",
+      "yahoo": "SPGI"
+    }
+  },
+  {
+    "ticker": "ELV",
+    "name": "Elevance Health Inc.",
+    "sector": "Health Care",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "elv.us",
+      "yahoo": "ELV"
+    }
+  },
+  {
+    "ticker": "DE",
+    "name": "Deere & Co.",
+    "sector": "Industrials",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "symbols": {
+      "stooq": "de.us",
+      "yahoo": "DE"
+    }
+  }
+]

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exchange Drop Monitor</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>📉</text></svg>">
+</head>
+<body>
+<div class="shell">
+
+  <header class="topbar">
+    <div class="brand">
+      <h1>Exchange Drop Monitor</h1>
+      <p class="sub">New York Stock Exchange · Nasdaq · London Stock Exchange — companies whose share price fell month on month</p>
+    </div>
+    <div class="topbar-right">
+      <p class="meta" id="meta"></p>
+      <button class="btn" id="refresh" type="button" title="Re-read data/snapshot.json">Refresh</button>
+      <button class="btn" id="theme" type="button" aria-label="Switch colour theme">Theme</button>
+    </div>
+  </header>
+
+  <div id="banners"></div>
+
+  <section class="filters" role="group" aria-label="Filters — these scope every number below">
+    <div class="field">
+      <span class="label" id="exchange-label">Exchange</span>
+      <div class="seg" id="exchange-filter" role="group" aria-labelledby="exchange-label"></div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="threshold">Minimum drop</label>
+      <div class="range-row">
+        <input type="range" id="threshold" min="0" max="25" step="0.5" value="0"
+               aria-describedby="threshold-value">
+        <span class="range-value" id="threshold-value">any drop</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="sector">Sector</label>
+      <select id="sector"><option value="">All sectors</option></select>
+    </div>
+
+    <div class="field">
+      <label class="label" for="search">Search</label>
+      <input type="search" id="search" placeholder="Ticker or company" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label class="label" for="sort">Sort</label>
+      <select id="sort">
+        <option value="mom_pct">Biggest drop</option>
+        <option value="drawdown_pct">Furthest below 3-month high</option>
+        <option value="chg_3m_pct">Biggest 3-month fall</option>
+        <option value="ticker">Ticker (A–Z)</option>
+      </select>
+    </div>
+
+    <label class="check" for="sustained">
+      <input type="checkbox" id="sustained">
+      <span>Two months running only</span>
+    </label>
+
+    <label class="check" for="include-risers">
+      <input type="checkbox" id="include-risers">
+      <span>Show risers too</span>
+    </label>
+  </section>
+
+  <section class="kpis" id="kpis" aria-label="Summary"></section>
+
+  <section class="card" id="exchange-card">
+    <div class="card-head"><h2>How much of each exchange is falling</h2></div>
+    <p class="card-note" id="exchange-note">Share of the tracked constituents that are down month on month.</p>
+    <div class="exchange-bars" id="exchange-bars"></div>
+  </section>
+
+  <section class="card" id="drops-card">
+    <div class="card-head">
+      <h2 id="drops-title">Biggest month-on-month falls</h2>
+      <span class="card-note" style="margin:0" id="drops-count"></span>
+    </div>
+    <p class="card-note" id="drops-note"></p>
+    <div class="chart" id="drops-chart"></div>
+    <div class="axis" id="drops-axis" aria-hidden="true"></div>
+    <p class="axis-title" id="drops-axis-title">Month-on-month change (%)</p>
+  </section>
+
+  <section class="card" id="table-card">
+    <div class="card-head">
+      <h2>Every tracked company</h2>
+      <span class="card-note" style="margin:0">Click a column heading to sort</span>
+    </div>
+    <p class="card-note">The same numbers as the chart above, in full — including the ones the chart truncates.</p>
+    <div class="table-wrap">
+      <table id="table">
+        <caption class="visually-hidden">Tracked companies with month-on-month price change</caption>
+        <thead>
+          <tr>
+            <th scope="col" data-sort="ticker">Ticker</th>
+            <th scope="col" data-sort="name">Company</th>
+            <th scope="col" data-sort="exchange">Exchange</th>
+            <th scope="col" data-sort="price">Last close</th>
+            <th scope="col" data-sort="mom_pct" aria-sort="ascending">Month on month</th>
+            <th scope="col" data-sort="prev_mom_pct">Previous month</th>
+            <th scope="col" data-sort="chg_3m_pct">3 months</th>
+            <th scope="col" data-sort="drawdown_pct">From 3-month high</th>
+            <th scope="col">Trend</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <p class="empty" id="table-empty" hidden>No company matches these filters.</p>
+  </section>
+
+  <footer class="foot" id="footer"></footer>
+</div>
+
+<div id="tooltip" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>

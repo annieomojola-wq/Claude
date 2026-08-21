@@ -1,0 +1,39 @@
+# Scheduled snapshot refresh.
+#
+# Inert as shipped: rename this file to `refresh-snapshot.yml` to enable it.
+# It needs write permission on the repository so it can commit the new snapshot.
+
+name: Refresh snapshot
+
+on:
+  schedule:
+    - cron: "30 17 * * 1-5"   # weekdays, 17:30 UTC (after the London close)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch prices
+        run: python3 fetch.py --provider stooq --quiet
+
+      - name: Commit the snapshot if it changed
+        run: |
+          if git diff --quiet -- data/snapshot.json; then
+            echo "no change"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/snapshot.json
+          git commit -m "Refresh snapshot ($(date -u +%Y-%m-%d))"
+          git push
