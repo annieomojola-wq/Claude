@@ -9,6 +9,8 @@ Each entry is one World Bank series. The fields that matter downstream:
              - neutral: shown, never scored (context, not a verdict)
   pulse      True if it feeds the composite economic pulse score
   since      first year the series realistically has data, for honest coverage notes
+  source     World Bank database id, when the series is not in the default WDI one
+             (the governance indicators live in source 3)
 
 Direction is the whole reason a single "pulse" number is possible: it is what
 lets unemployment falling and FDI rising both count as "better".
@@ -99,10 +101,10 @@ INDICATORS: list[dict] = [
         "note": "Central government debt as % of GDP. Patchy for Nigeria.",
     },
     {
-        "code": "GC.BAL.CASH.GD.ZS", "family": "fiscal", "pulse": False,
+        "code": "GC.NLD.TOTL.GD.ZS", "family": "fiscal", "pulse": False,
         "label": "Fiscal balance", "short": "Fiscal balance",
         "unit": "pct_gdp", "direction": "up_good", "since": 1990,
-        "note": "Cash surplus (+) or deficit (-) as % of GDP.",
+        "note": "Net lending (+) or net borrowing (-) as % of GDP.",
     },
     {
         "code": "DT.DOD.DECT.CD", "family": "fiscal", "pulse": False,
@@ -207,37 +209,37 @@ INDICATORS: list[dict] = [
 
     # ---- governance (Worldwide Governance Indicators, 1996 onwards) ---------
     {
-        "code": "PV.EST", "family": "governance", "pulse": False,
+        "code": "PV.EST", "family": "governance", "pulse": False, "source": 3,
         "label": "Political stability", "short": "Political stability",
         "unit": "score", "direction": "up_good", "since": 1996,
         "note": "WGI estimate, roughly -2.5 to +2.5. Absence of violence and disorderly power transfer.",
     },
     {
-        "code": "GE.EST", "family": "governance", "pulse": False,
+        "code": "GE.EST", "family": "governance", "pulse": False, "source": 3,
         "label": "Government effectiveness", "short": "Govt effectiveness",
         "unit": "score", "direction": "up_good", "since": 1996,
         "note": "Quality of public services and policy implementation.",
     },
     {
-        "code": "RQ.EST", "family": "governance", "pulse": False,
+        "code": "RQ.EST", "family": "governance", "pulse": False, "source": 3,
         "label": "Regulatory quality", "short": "Regulatory quality",
         "unit": "score", "direction": "up_good", "since": 1996,
         "note": "Whether policy lets the private sector function.",
     },
     {
-        "code": "RL.EST", "family": "governance", "pulse": False,
+        "code": "RL.EST", "family": "governance", "pulse": False, "source": 3,
         "label": "Rule of law", "short": "Rule of law",
         "unit": "score", "direction": "up_good", "since": 1996,
         "note": "Contract enforcement, property rights, courts.",
     },
     {
-        "code": "CC.EST", "family": "governance", "pulse": False,
+        "code": "CC.EST", "family": "governance", "pulse": False, "source": 3,
         "label": "Control of corruption", "short": "Control of corruption",
         "unit": "score", "direction": "up_good", "since": 1996,
         "note": "How far public power is exercised for private gain.",
     },
     {
-        "code": "VA.EST", "family": "governance", "pulse": False,
+        "code": "VA.EST", "family": "governance", "pulse": False, "source": 3,
         "label": "Voice and accountability", "short": "Voice & accountability",
         "unit": "score", "direction": "up_good", "since": 1996,
         "note": "Free expression, free media, ability to select a government.",

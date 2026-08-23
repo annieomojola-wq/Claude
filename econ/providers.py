@@ -108,15 +108,22 @@ class WorldBankProvider:
     def __init__(self, timeout: float = 60.0) -> None:
         self.timeout = timeout
 
-    def url_for(self, code: str, iso3_codes: list[str], start: int, end: int) -> str:
+    def url_for(self, code: str, iso3_codes: list[str], start: int, end: int,
+                source: int | None = None) -> str:
         path = ";".join(iso3_codes)
         # The date range is written literally: the API wants `date=1975:2025`,
         # and percent-encoding the colon is asking for trouble.
         query = f"format=json&per_page=20000&date={start}:{end}"
+        # Not every series lives in the default WDI database. The governance
+        # indicators sit in source 3 (Worldwide Governance Indicators) and
+        # return "indicator not found" unless you ask for them there.
+        if source is not None:
+            query += f"&source={source}"
         return f"{WORLDBANK_BASE}/country/{path}/indicator/{code}?{query}"
 
     def fetch(self, code: str, iso3_codes: list[str], start: int, end: int) -> Observations:
-        raw = _get(self.url_for(code, iso3_codes, start, end), timeout=self.timeout)
+        source = indicators.BY_CODE.get(code, {}).get("source")
+        raw = _get(self.url_for(code, iso3_codes, start, end, source), timeout=self.timeout)
         try:
             payload = json.loads(raw.decode("utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError) as exc:
