@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Five-Market Economic Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="econ.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🌍</text></svg>">
+</head>
+<body>
+<div class="shell">
+
+  <header class="topbar">
+    <div class="brand">
+      <h1>Five-Market Economic Tracker</h1>
+      <p class="sub" id="subtitle">United States · United Kingdom · Ireland · Canada · Nigeria — how each economy is doing, against its own last fifty years</p>
+    </div>
+    <div class="topbar-right">
+      <p class="meta" id="meta"></p>
+      <button class="btn" id="theme" type="button" aria-label="Switch colour theme">Theme</button>
+    </div>
+  </header>
+
+  <div id="banners"></div>
+
+  <!-- 1 ─ the headline read -->
+  <section class="card">
+    <div class="card-head">
+      <h2>Economic pulse</h2>
+      <span class="meta" id="pulse-asof"></span>
+    </div>
+    <p class="card-note">
+      Every indicator is scored as a percentile against that same country's own record, then averaged.
+      70 means this year is better than 70% of the years on file for that country — it is a comparison
+      with its own past, never with the others.
+    </p>
+    <div class="pulse-grid" id="pulse-grid"></div>
+  </section>
+
+  <!-- 2 ─ the fifty-year view -->
+  <section class="card">
+    <div class="card-head">
+      <h2>Fifty years of pulse</h2>
+      <div class="seg" id="pulse-view" role="group" aria-label="Pulse view">
+        <button type="button" data-view="chart" aria-pressed="true">Chart</button>
+        <button type="button" data-view="table" aria-pressed="false">Table</button>
+      </div>
+    </div>
+    <p class="card-note">
+      The composite over time. Shaded bands mark the four global downturns in the window, so you can
+      see which of these economies actually felt each one.
+    </p>
+    <div id="pulse-chart"></div>
+    <div id="pulse-table" hidden></div>
+  </section>
+
+  <!-- 3 ─ one indicator, five countries -->
+  <section class="card">
+    <div class="card-head"><h2>Indicator explorer</h2></div>
+    <div class="filters" role="group" aria-label="Explorer controls">
+      <div class="field">
+        <label class="label" for="indicator">Indicator</label>
+        <select id="indicator"></select>
+      </div>
+      <div class="field">
+        <span class="label" id="range-label">From</span>
+        <div class="seg" id="range-filter" role="group" aria-labelledby="range-label">
+          <button type="button" data-start="1975" aria-pressed="true">1975</button>
+          <button type="button" data-start="1995" aria-pressed="false">1995</button>
+          <button type="button" data-start="2010" aria-pressed="false">2010</button>
+        </div>
+      </div>
+      <div class="field">
+        <span class="label" id="explorer-view-label">View</span>
+        <div class="seg" id="explorer-view" role="group" aria-labelledby="explorer-view-label">
+          <button type="button" data-view="chart" aria-pressed="true">Chart</button>
+          <button type="button" data-view="table" aria-pressed="false">Table</button>
+        </div>
+      </div>
+    </div>
+    <p class="card-note" id="indicator-note"></p>
+    <div id="explorer-chart"></div>
+    <div id="explorer-table" hidden></div>
+    <div id="explorer-ranking"></div>
+  </section>
+
+  <!-- 4 ─ one country, everything -->
+  <section class="card">
+    <div class="card-head">
+      <h2>Country detail</h2>
+      <div class="seg" id="country-filter" role="group" aria-label="Country"></div>
+    </div>
+    <p class="card-note" id="country-note"></p>
+    <div id="country-detail"></div>
+  </section>
+
+  <!-- 5 ─ the part no API covers -->
+  <section class="card" id="context-card">
+    <div class="card-head">
+      <h2>Right now</h2>
+      <span class="meta" id="context-asof"></span>
+    </div>
+    <p class="card-note" id="context-note"></p>
+    <div id="context-body"></div>
+  </section>
+
+  <!-- 6 ─ how to read all of this -->
+  <section class="card">
+    <div class="card-head"><h2>Method &amp; coverage</h2></div>
+    <div id="method-body"></div>
+  </section>
+
+  <footer class="foot" id="foot"></footer>
+</div>
+<script src="econ.js"></script>
+</body>
+</html>

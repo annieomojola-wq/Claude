@@ -208,38 +208,41 @@ INDICATORS: list[dict] = [
     },
 
     # ---- governance (Worldwide Governance Indicators, 1996 onwards) ---------
+    # These live in World Bank source 3 under GOV_WGI_-prefixed ids. The bare
+    # codes (PV.EST and friends) that most documentation still quotes now
+    # return "indicator not found".
     {
-        "code": "PV.EST", "family": "governance", "pulse": False, "source": 3,
+        "code": "GOV_WGI_PV.EST", "family": "governance", "pulse": False, "source": 3,
         "label": "Political stability", "short": "Political stability",
         "unit": "score", "direction": "up_good", "since": 1996,
         "note": "WGI estimate, roughly -2.5 to +2.5. Absence of violence and disorderly power transfer.",
     },
     {
-        "code": "GE.EST", "family": "governance", "pulse": False, "source": 3,
+        "code": "GOV_WGI_GE.EST", "family": "governance", "pulse": False, "source": 3,
         "label": "Government effectiveness", "short": "Govt effectiveness",
         "unit": "score", "direction": "up_good", "since": 1996,
         "note": "Quality of public services and policy implementation.",
     },
     {
-        "code": "RQ.EST", "family": "governance", "pulse": False, "source": 3,
+        "code": "GOV_WGI_RQ.EST", "family": "governance", "pulse": False, "source": 3,
         "label": "Regulatory quality", "short": "Regulatory quality",
         "unit": "score", "direction": "up_good", "since": 1996,
         "note": "Whether policy lets the private sector function.",
     },
     {
-        "code": "RL.EST", "family": "governance", "pulse": False, "source": 3,
+        "code": "GOV_WGI_RL.EST", "family": "governance", "pulse": False, "source": 3,
         "label": "Rule of law", "short": "Rule of law",
         "unit": "score", "direction": "up_good", "since": 1996,
         "note": "Contract enforcement, property rights, courts.",
     },
     {
-        "code": "CC.EST", "family": "governance", "pulse": False, "source": 3,
+        "code": "GOV_WGI_CC.EST", "family": "governance", "pulse": False, "source": 3,
         "label": "Control of corruption", "short": "Control of corruption",
         "unit": "score", "direction": "up_good", "since": 1996,
         "note": "How far public power is exercised for private gain.",
     },
     {
-        "code": "VA.EST", "family": "governance", "pulse": False, "source": 3,
+        "code": "GOV_WGI_VA.EST", "family": "governance", "pulse": False, "source": 3,
         "label": "Voice and accountability", "short": "Voice & accountability",
         "unit": "score", "direction": "up_good", "since": 1996,
         "note": "Free expression, free media, ability to select a government.",
