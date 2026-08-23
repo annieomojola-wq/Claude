@@ -1,0 +1,186 @@
+/* Career pathways — layers on styles.css (base tokens) and econ.css (country hues).
+
+   The page is read, not operated, so the treatment is quieter than the economy
+   dashboard: no charts, a single accent taken from whichever country is
+   selected, and a step sequence that carries the structure. */
+
+/* ── at-a-glance facts ────────────────────────────────────────────────── */
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 14px;
+}
+.fact { background: var(--surface); padding: 12px 14px; }
+.fact dt {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted); font-weight: 600; margin-bottom: 4px;
+}
+.fact dd { margin: 0; font-size: 13px; color: var(--ink); line-height: 1.4; }
+.fact dd.mono { font-family: var(--font-mono); font-weight: 500; }
+
+/* ── the pathway ──────────────────────────────────────────────────────── */
+
+.pathway { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+
+.pathway li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 14px;
+  padding: 0 0 20px;
+  position: relative;
+}
+/* The rail joins the steps, and stops at the last one rather than dangling. */
+.pathway li::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 30px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.pathway li:last-child { padding-bottom: 0; }
+.pathway li:last-child::before { display: none; }
+
+.step-n {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+  background: var(--surface-sunk);
+  border: 2px solid var(--accent, var(--muted));
+  color: var(--ink);
+  position: relative; z-index: 1;
+}
+.step-body { padding-top: 5px; min-width: 0; }
+.step-title { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+.step-detail { font-size: 13px; color: var(--ink-2); line-height: 1.55; margin: 0; }
+.step-body-tag {
+  display: inline-block; margin-top: 7px;
+  font-size: 11px; font-family: var(--font-mono);
+  color: var(--ink-2); background: var(--surface-sunk);
+  border: 1px solid var(--border); border-radius: 20px; padding: 2px 9px;
+}
+
+.note-box {
+  margin: 20px 0 0;
+  padding: 12px 14px;
+  border-left: 3px solid var(--accent, var(--muted));
+  background: var(--surface-sunk);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 13px; color: var(--ink-2); line-height: 1.55;
+}
+
+.after-path {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);
+}
+.after-path h3 {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted); margin: 0 0 8px; font-weight: 600;
+}
+.after-path p { font-size: 13px; color: var(--ink-2); line-height: 1.55; margin: 0; }
+.body-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 13px; }
+.body-list a { color: var(--ink-2); }
+.body-list a:hover { color: var(--ink); }
+
+/* ── company cards ────────────────────────────────────────────────────── */
+
+.company-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+  gap: 10px;
+}
+
+.company {
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  background: var(--surface-sunk);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent, var(--muted));
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  display: grid;
+  gap: 3px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+.company:hover, .company:focus-visible {
+  background: var(--surface);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+}
+.company[aria-expanded="true"] { background: var(--surface); }
+.company-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.company-ticker { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.company-segment { font-size: 12px; color: var(--ink-2); margin-top: 3px; }
+.company-scale { font-size: 11px; color: var(--muted); font-family: var(--font-mono); }
+
+@media (prefers-reduced-motion: reduce) {
+  .company { transition: none; }
+  .company:hover, .company:focus-visible { transform: none; }
+}
+
+/* ── the modal ────────────────────────────────────────────────────────── */
+
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 40;
+  background: rgba(0, 0, 0, 0.34);
+}
+.modal-backdrop[hidden] { display: none; }
+
+.company-modal {
+  position: absolute;
+  z-index: 50;
+  width: min(360px, calc(100vw - 32px));
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent, var(--muted));
+  border-radius: var(--radius);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.24);
+  padding: 16px 18px 15px;
+}
+.company-modal[hidden] { display: none; }
+
+.company-modal h3 { font-size: 16px; margin: 0 0 2px; }
+.modal-meta {
+  font-family: var(--font-mono); font-size: 11px; color: var(--muted);
+  margin: 0 0 12px; display: flex; flex-wrap: wrap; gap: 3px 14px;
+}
+.modal-section { margin: 0 0 11px; }
+.modal-section:last-of-type { margin-bottom: 0; }
+.modal-section h4 {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--muted); margin: 0 0 3px; font-weight: 600;
+}
+.modal-section p { font-size: 12.5px; line-height: 1.5; color: var(--ink-2); margin: 0; }
+.modal-foot {
+  margin-top: 13px; padding-top: 11px; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center; gap: 10px;
+}
+.modal-foot a { font-size: 12px; }
+.modal-close {
+  background: none; border: 0; cursor: pointer; padding: 3px 7px;
+  color: var(--muted); font: inherit; font-size: 12px; border-radius: 6px;
+}
+.modal-close:hover { background: var(--surface-sunk); color: var(--ink); }
+
+@media (max-width: 520px) {
+  /* On a phone there is nowhere sensible to anchor a popover, so it becomes a
+     genuine bottom sheet rather than a card floating over the tap target. */
+  .company-modal {
+    position: fixed;
+    left: 8px; right: 8px; bottom: 8px; top: auto;
+    width: auto;
+    max-height: 78vh;
+    overflow-y: auto;
+  }
+  .pathway li { grid-template-columns: 28px 1fr; gap: 11px; }
+  .step-n { width: 28px; height: 28px; font-size: 12px; }
+  .pathway li::before { left: 13px; top: 26px; }
+}

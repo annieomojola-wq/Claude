@@ -409,3 +409,36 @@ footer.foot { color: var(--muted); font-size: 12px; padding-top: 6px; }
   .axis-title { margin-left: 108px; }
   .kpi .value { font-size: 26px; }
 }
+
+/* ── dashboard tabs ───────────────────────────────────────────────────────
+   Shared chrome across the three dashboards. Lives here rather than in a
+   per-page stylesheet because every page carries it. */
+
+.tabs {
+  display: flex;
+  gap: 2px;
+  margin: 0 0 18px;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+.tabs a {
+  padding: 9px 15px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  white-space: nowrap;
+  border-radius: 6px 6px 0 0;
+}
+.tabs a:hover { color: var(--ink); background: var(--surface-sunk); }
+.tabs a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 600;
+  border-bottom-color: var(--series-1);
+}
+.tabs a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: -2px;
+}

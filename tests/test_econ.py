@@ -348,5 +348,89 @@ class ShippedSnapshotTests(unittest.TestCase):
         self.assertLessEqual(oldest, 1976)
 
 
+class CareersDataTests(unittest.TestCase):
+    """Guards on data/careers.json — the hand-curated careers layer."""
+
+    @classmethod
+    def setUpClass(cls):
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        path = os.path.join(root, "data", "careers.json")
+        if not os.path.exists(path):
+            raise unittest.SkipTest("no careers data yet")
+        with open(path) as handle:
+            cls.data = json.load(handle)
+
+    def test_markets_match_the_tracked_countries(self):
+        # The careers page carries its own market list so it need not load the
+        # 400KB economic snapshot; this is what stops the two drifting apart.
+        self.assertEqual([m["iso3"] for m in self.data["markets"]], countries.ISO3_CODES)
+        for entry in self.data["markets"]:
+            source = countries.get(entry["iso3"])
+            self.assertEqual(entry["short"], source["short"])
+            self.assertEqual(entry["name"], source["name"])
+
+    def test_every_country_has_a_complete_pathway(self):
+        for iso3 in countries.ISO3_CODES:
+            with self.subTest(iso3):
+                entry = self.data["countries"][iso3]
+                for field in ("regulators", "designation", "typical_time",
+                              "gate", "headline", "steps", "cpd", "bodies"):
+                    self.assertIn(field, entry)
+                self.assertGreaterEqual(len(entry["steps"]), 4)
+                self.assertGreaterEqual(len(entry["bodies"]), 2)
+
+    def test_pathway_steps_are_numbered_in_order(self):
+        for iso3 in countries.ISO3_CODES:
+            steps = self.data["countries"][iso3]["steps"]
+            self.assertEqual([s["n"] for s in steps], list(range(1, len(steps) + 1)), iso3)
+
+    def test_every_country_has_companies_with_full_modal_content(self):
+        for iso3 in countries.ISO3_CODES:
+            companies = self.data["companies"][iso3]
+            self.assertGreaterEqual(len(companies), 5, iso3)
+            for company in companies:
+                with self.subTest(company=company.get("name")):
+                    # Every field here is rendered in the modal; a missing one
+                    # shows as a blank section rather than failing loudly.
+                    for field in ("name", "ticker", "segment", "hq", "scale",
+                                  "what", "why_watch", "entry", "url"):
+                        self.assertTrue(company.get(field), field)
+                    self.assertTrue(company["url"].startswith("https://"))
+
+    def test_every_linked_body_and_source_is_https(self):
+        for iso3 in countries.ISO3_CODES:
+            for body in self.data["countries"][iso3]["bodies"]:
+                self.assertTrue(body["url"].startswith("https://"), body["url"])
+
+
+class SiteBuildTests(unittest.TestCase):
+    """The published site renames pages, so the tab links must be rewritten."""
+
+    def setUp(self):
+        import build_site
+        self.build_site = build_site
+
+    def test_nav_links_are_rewritten_to_site_filenames(self):
+        html = ('<a href="econ.html" data-nav="economy">Economy</a>'
+                '<a href="careers.html" data-nav="careers">Careers</a>'
+                '<a href="index.html" data-nav="markets">Markets</a>')
+        out = self.build_site.rewrite_nav(html)
+        self.assertIn('href="index.html" data-nav="economy"', out)
+        self.assertIn('href="careers.html" data-nav="careers"', out)
+        self.assertIn('href="markets.html" data-nav="markets"', out)
+
+    def test_links_without_data_nav_are_left_alone(self):
+        html = '<a href="https://example.com/index.html">Source</a>'
+        self.assertEqual(self.build_site.rewrite_nav(html), html)
+
+    def test_aria_current_survives_the_rewrite(self):
+        html = '<a href="econ.html" data-nav="economy" aria-current="page">Economy</a>'
+        self.assertIn('aria-current="page"', self.build_site.rewrite_nav(html))
+
+    def test_every_dashboard_has_a_site_filename(self):
+        import export_html
+        self.assertEqual(set(self.build_site.SITE_NAMES), set(export_html.DASHBOARDS))
+
+
 if __name__ == "__main__":
     unittest.main()

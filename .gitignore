@@ -3,3 +3,6 @@ __pycache__/
 data/cache/
 .DS_Store
 dist/
+
+# built by build_site.py, published by Actions rather than committed
+site/

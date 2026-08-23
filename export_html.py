@@ -41,6 +41,16 @@ DASHBOARDS = {
         "out": "dashboard.html",
         "title": "Exchange Drop Monitor",
     },
+    "careers": {
+        "html": "careers.html",
+        # styles.css owns the base tokens, econ.css the country hues.
+        "css": ["styles.css", "econ.css", "careers.css"],
+        "js": "careers.js",
+        "data": os.path.join("data", "careers.json"),
+        "global": "__CAREERS__",
+        "out": "careers.html",
+        "title": "Advice Career Pathways",
+    },
     "econ": {
         "html": "econ.html",
         # styles.css owns the base tokens; econ.css layers the tracker on top.

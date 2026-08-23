@@ -23,9 +23,10 @@ in a banner whenever it is showing demo data.
 Python 3.9+ is the only requirement. No pip installs, no build step, no
 JavaScript toolchain.
 
-> There is a second dashboard in this repo: the **[Five-Market Economic
-> Tracker](#five-market-economic-tracker)**, which follows the US, UK, Ireland,
-> Canada and Nigeria across fifty years of macroeconomic data.
+> There are three dashboards in this repo, published together as one site:
+> **Economy** (the [Five-Market Economic Tracker](#five-market-economic-tracker)),
+> **Careers** ([advice career pathways](#careers-advice-career-pathways)), and
+> **Markets** (this stock monitor). See [Publishing the site](#publishing-the-site).
 
 ## Two periods, one page
 
@@ -168,8 +169,9 @@ python3 fetch.py --provider stooq --quiet --fail-under 90 \
 ```
 fetch.py               build data/snapshot.json          (stock dashboard)
 fetch_econ.py          build data/econ.json              (economic tracker)
-serve.py               static server for both dashboards
-export_html.py         bundle either one into a single shareable HTML file
+serve.py               static server for the dashboards
+export_html.py         bundle any one into a single shareable HTML file
+build_site.py          build site/ for GitHub Pages (all three, self-contained)
 stockmon/
   analysis.py          month-on-month and year-on-year maths (both bases)
   providers.py         stooq / yahoo / twelvedata / demo
@@ -182,11 +184,12 @@ econ/
   pulse.py             percentile scoring and the composite (pure maths)
   snapshot.py          orchestration and error collection
 universe/*.json        the tracked companies, per exchange
-web/                   both dashboards (index.html + app.js, econ.html + econ.js)
+web/                   all three dashboards (index/econ/careers .html + .js)
 data/snapshot.json     what the stock dashboard reads
 data/econ.json         what the economic tracker reads
 data/econ_context.json the hand-curated layer: policy rates, politics, IPOs
-tests/                 113 tests, stdlib unittest
+data/careers.json      qualification pathways and companies, per market
+tests/                 122 tests, stdlib unittest
 ```
 
 ## Tests
@@ -343,3 +346,90 @@ inlined. Opens from disk, survives email, drops on any static host.
 - **The most recent year is often incomplete or revised**, and government debt
   is not reported for Ireland or Nigeria in this series — the coverage table
   shows exactly which years each country actually has.
+
+---
+
+# Careers: advice career pathways
+
+The third dashboard. **What it actually takes to become a certified financial
+adviser in each of the five markets, and who to watch in each.**
+
+Open the Careers tab, or `web/careers.html` locally.
+
+## Why the five differ more than you would expect
+
+The pathways are not variations on one theme — they are structurally different,
+and the difference is the useful part:
+
+| Market | The gate | Core designation | Typical time |
+|---|---|---|---|
+| US | Exams first, then a sponsor | CFP® | 4–6 years |
+| UK | One Level 4 qualification, then an annual licence | DipPFS / Chartered | 18 months – 3 years |
+| Ireland | One designation covering five product categories | QFA | 1–2 years |
+| Canada | Channel first, then exams | CFP® / QAFP® | 2–4 years |
+| Nigeria | Registration with the SEC is mandatory | CIS | 2–4 years |
+
+The UK lets you start with no degree and qualify on the job. The US front-loads
+exams and then needs a firm to sponsor you, so the job comes before the licence.
+Ireland folds everything into the QFA. Canada makes you pick a regulatory
+channel before you pick an exam, and Quebec runs a separate system entirely.
+Nigeria leads with SEC registration, under a legal framework rewritten in 2025.
+
+Each step links to the regulator or awarding body that actually sets the rule,
+so you can check the source rather than trust the summary.
+
+## Companies to watch
+
+36 firms across the five markets, spanning advice, asset management and banking.
+Hovering a card opens its detail; so does tapping it, and so does tabbing to it.
+
+That matters more than it sounds. A panel that only ever appears on hover is
+unreachable on a phone and invisible to a screen reader, so hover is the
+convenience and click is the contract — tap and keyboard focus pin the panel
+open with a backdrop and an Escape handler.
+
+Each card carries what the firm does, why it is worth watching, and how people
+actually get in — graduate schemes, career-changer academies, licensing
+sponsorship. Figures carry the date they were reported.
+
+## Keeping it honest
+
+`data/careers.json` is hand-maintained and dated, like the economic tracker's
+curated layer. It is **not** legal or regulatory advice, **not** a ranking of
+employers, and **not** live data. Several of these bodies revise their
+requirements annually — the QAFP® education pathway accreditation in Canada
+runs only to 30 June 2026, for instance — so check the linked source before
+committing time or money to a route.
+
+---
+
+# Publishing the site
+
+```bash
+python3 build_site.py     # -> site/
+```
+
+Three self-contained pages, no fetches, nothing to configure on the host:
+
+| File | Dashboard |
+|---|---|
+| `index.html` | Economy — the fifty-year tracker (the landing page) |
+| `careers.html` | Careers — pathways and companies |
+| `markets.html` | Markets — the stock drop monitor |
+
+In `web/` the stock dashboard is `index.html`, because that is what a local
+server opens. On the published site the economy tracker should be the landing
+page instead. So `build_site.py` renames the files and rewrites the tab links to
+match — keyed off each link's `data-nav` attribute rather than its `href`, which
+makes the rewrite unambiguous and is what the site-build tests check.
+
+## GitHub Pages
+
+`.github/workflows/pages.yml` runs the test suite, builds `site/`, and deploys
+it. It fires on any push that touches `web/`, `data/`, or the build scripts —
+which includes the scheduled data refresh committing a new snapshot, so **the
+live site follows the data without anyone doing anything.**
+
+Enabling it is a one-time repository setting: **Settings → Pages → Build and
+deployment → Source → GitHub Actions.** The workflow deploys from the branch
+named in its `on.push.branches` list; update that list if the branch changes.

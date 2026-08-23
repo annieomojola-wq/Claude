@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advice Career Pathways</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="econ.css">
+  <link rel="stylesheet" href="careers.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🎓</text></svg>">
+</head>
+<body>
+<div class="shell">
+
+  <header class="topbar">
+    <div class="brand">
+      <h1>Advice Career Pathways</h1>
+      <p class="sub">What it actually takes to become a certified financial adviser in each of the five markets — and who to watch in each</p>
+    </div>
+    <div class="topbar-right">
+      <p class="meta" id="meta"></p>
+      <button class="btn" id="theme" type="button" aria-label="Switch colour theme">Theme</button>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Dashboards">
+    <a href="econ.html" data-nav="economy">Economy</a>
+    <a href="careers.html" data-nav="careers" aria-current="page">Careers</a>
+    <a href="index.html" data-nav="markets">Markets</a>
+  </nav>
+
+  <div id="banners"></div>
+
+  <section class="card">
+    <div class="card-head">
+      <h2>Choose a market</h2>
+      <div class="seg" id="country-filter" role="group" aria-label="Country"></div>
+    </div>
+    <p class="card-note" id="headline"></p>
+    <div class="facts" id="facts"></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>The pathway</h2></div>
+    <p class="card-note">
+      Numbered because it genuinely is a sequence — in three of these five markets the order is the
+      thing people get wrong, and taking a step early wastes a year.
+    </p>
+    <ol class="pathway" id="pathway"></ol>
+    <p class="note-box" id="shortcut" hidden></p>
+    <div class="after-path">
+      <div>
+        <h3>Staying qualified</h3>
+        <p id="cpd"></p>
+      </div>
+      <div>
+        <h3>Who sets the rules</h3>
+        <ul class="body-list" id="bodies"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2>Companies to watch</h2>
+      <span class="meta">Hover or tap a card for the detail</span>
+    </div>
+    <p class="card-note" id="companies-note"></p>
+    <div class="company-grid" id="companies"></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>How to use this</h2></div>
+    <div class="method-cols" id="method"></div>
+  </section>
+
+  <footer class="foot" id="foot"></footer>
+</div>
+
+<div class="modal-backdrop" id="modal-backdrop" hidden></div>
+<div class="company-modal" id="company-modal" role="dialog" aria-modal="false" aria-labelledby="modal-title" hidden></div>
+
+<script src="careers.js"></script>
+</body>
+</html>

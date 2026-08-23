@@ -1,0 +1,731 @@
+{
+ "as_of": "2026-08-23",
+ "note": "Hand-maintained and dated. Qualification rules and company figures both move; every pathway below links to the regulator or awarding body that actually sets the rule, and company figures carry the date they were reported. Verify before you act on any of it.",
+ "markets": [
+  {
+   "iso3": "USA",
+   "short": "US",
+   "name": "United States",
+   "flag": "🇺🇸"
+  },
+  {
+   "iso3": "GBR",
+   "short": "UK",
+   "name": "United Kingdom",
+   "flag": "🇬🇧"
+  },
+  {
+   "iso3": "IRL",
+   "short": "Ireland",
+   "name": "Ireland",
+   "flag": "🇮🇪"
+  },
+  {
+   "iso3": "CAN",
+   "short": "Canada",
+   "name": "Canada",
+   "flag": "🇨🇦"
+  },
+  {
+   "iso3": "NGA",
+   "short": "Nigeria",
+   "name": "Nigeria",
+   "flag": "🇳🇬"
+  }
+ ],
+ "countries": {
+  "USA": {
+   "regulators": "FINRA · SEC · state securities regulators",
+   "designation": "CFP®",
+   "typical_time": "4–6 years",
+   "gate": "Exams first, then a sponsor",
+   "headline": "Two separate systems, and which one you enter decides your exams. Selling securities means FINRA licensing through a sponsoring firm. Giving advice for a fee means registering as an investment adviser representative, which you can do without a broker-dealer behind you.",
+   "steps": [
+    {
+     "n": 1,
+     "title": "Bachelor's degree",
+     "detail": "Any field. It is not required to sit the licensing exams, but CFP® certification requires one from an accredited institution, so skipping it closes the main door later.",
+     "body": "CFP Board"
+    },
+    {
+     "n": 2,
+     "title": "SIE exam",
+     "detail": "Securities Industry Essentials. The one exam you can take with no employer sponsoring you — from age 18, before you have a job. The usual first move.",
+     "body": "FINRA"
+    },
+    {
+     "n": 3,
+     "title": "Get sponsored, then Series 7",
+     "detail": "The General Securities Representative exam requires a FINRA member firm to sponsor you. This is why the job comes before the licence, not after.",
+     "body": "FINRA"
+    },
+    {
+     "n": 4,
+     "title": "Series 66 (or 63 + 65)",
+     "detail": "State law and investment-adviser registration. Series 66 combines both; taken alongside the Series 7.",
+     "body": "NASAA"
+    },
+    {
+     "n": 5,
+     "title": "Or: Series 65 alone, no sponsor",
+     "detail": "The fee-only route. Series 65 on its own registers you as an investment adviser representative without a broker-dealer — the path most independent RIAs take.",
+     "body": "NASAA"
+    },
+    {
+     "n": 6,
+     "title": "CFP® certification",
+     "detail": "Coursework through a CFP Board Registered Program, the CFP exam, and 6,000 hours of professional experience — or 4,000 hours of apprenticeship. Plus a binding fiduciary commitment.",
+     "body": "CFP Board"
+    }
+   ],
+   "shortcut": "Worth knowing: NASAA waives the Series 65 for five designations — CFP, CFA, ChFC, PFS and CIMA. Hold one in good standing and you go straight to IAR registration.",
+   "cpd": "CFP®: 30 hours every two years, including 2 hours of ethics. FINRA: annual Regulatory Element plus firm-level Firm Element.",
+   "bodies": [
+    {
+     "name": "CFP Board — certification process",
+     "url": "https://www.cfp.net/certification-process"
+    },
+    {
+     "name": "FINRA — qualification exams",
+     "url": "https://www.finra.org/registration-exams-ce/qualification-exams"
+    },
+    {
+     "name": "SEC — investment adviser registration",
+     "url": "https://www.sec.gov/investment"
+    }
+   ]
+  },
+  "GBR": {
+   "regulators": "Financial Conduct Authority (FCA)",
+   "designation": "DipPFS / Chartered Financial Planner",
+   "typical_time": "18 months – 3 years",
+   "gate": "One Level 4 qualification, then an annual licence to practise",
+   "headline": "The cleanest of the five. One FCA-recognised Level 4 qualification gets you advising, and no degree is required to start — most people enter through a paraplanner or adviser-academy role and study alongside the job. What makes the UK distinctive is the annual renewal: your right to advise lapses each year unless you re-earn it.",
+   "steps": [
+    {
+     "n": 1,
+     "title": "No degree needed — get in first",
+     "detail": "Paraplanning and adviser-academy roles are the standard entry, and most employers fund the qualification. The study happens alongside the job rather than before it."
+    },
+    {
+     "n": 2,
+     "title": "An FCA-recognised Level 4 qualification",
+     "detail": "Three main routes: the CII Diploma in Regulated Financial Planning (DipPFS, six units — the most common), the CISI Investment Advice Diploma (three units, two mandatory), or the LIBF DipFA.",
+     "body": "CII / CISI / LIBF"
+    },
+    {
+     "n": 3,
+     "title": "Work under an FCA-authorised firm",
+     "detail": "Either as an employee of an authorised firm, or by becoming directly authorised yourself — a far heavier lift involving capital and compliance requirements.",
+     "body": "FCA"
+    },
+    {
+     "n": 4,
+     "title": "Statement of Professional Standing",
+     "detail": "Issued by an FCA-accredited body. It confirms your qualification, your CPD and your adherence to a code of ethics. Without a current SPS you cannot give regulated advice.",
+     "body": "FCA-accredited bodies"
+    },
+    {
+     "n": 5,
+     "title": "Renew the SPS every year",
+     "detail": "35 hours of CPD annually, at least 21 of them structured. This is the ongoing condition, not a one-off hurdle.",
+     "body": "FCA"
+    },
+    {
+     "n": 6,
+     "title": "Level 6 for Chartered status",
+     "detail": "The CII Advanced Diploma leads to Chartered Financial Planner — the profession's senior mark, and increasingly what larger firms expect of lead advisers.",
+     "body": "CII"
+    }
+   ],
+   "cpd": "35 hours a year, of which 21 must be structured. Verified annually as a condition of SPS renewal.",
+   "bodies": [
+    {
+     "name": "FCA — professional standards for advisers",
+     "url": "https://www.fca.org.uk/firms/professional-standards-advisers"
+    },
+    {
+     "name": "CII — Diploma in Regulated Financial Planning",
+     "url": "https://www.cii.co.uk/learning/qualifications/diploma-in-regulated-financial-planning-qualification/"
+    },
+    {
+     "name": "CISI — Investment Advice Diploma",
+     "url": "https://www.cisi.org/"
+    }
+   ]
+  },
+  "IRL": {
+   "regulators": "Central Bank of Ireland",
+   "designation": "QFA (Qualified Financial Adviser)",
+   "typical_time": "1–2 years",
+   "gate": "One designation covering five product categories",
+   "headline": "Ireland runs the most consolidated system of the five. A single designation — the QFA — satisfies the Central Bank's Minimum Competency Code across all five retail product categories, so there is one qualification to chase rather than a stack of exams.",
+   "steps": [
+    {
+     "n": 1,
+     "title": "Pick your awarding body",
+     "detail": "Two routes to the same designation: the Professional Diploma in Financial Advice from IOB (the Institute of Banking), or the Certificate in Professional Financial Advice from the LIA.",
+     "body": "IOB / LIA"
+    },
+    {
+     "n": 2,
+     "title": "Pass the QFA exams",
+     "detail": "Six subjects covering the five retail categories the Minimum Competency Code recognises: pensions, investments, life assurance, loans and mortgages.",
+     "body": "QFA Board"
+    },
+    {
+     "n": 3,
+     "title": "Work under a regulated firm",
+     "detail": "Advisers operate under a Central Bank–authorised firm and appear on its register. New entrants advise under supervision while accumulating experience.",
+     "body": "Central Bank of Ireland"
+    },
+    {
+     "n": 4,
+     "title": "Keep CPD current",
+     "detail": "Annual CPD accredited by IOB, the LIA or the Insurance Institute. A random sample of members is audited each year, so the requirement has teeth.",
+     "body": "QFA Board"
+    },
+    {
+     "n": 5,
+     "title": "Then specialise",
+     "detail": "CFP® through FPSB Ireland, or a Graduate Diploma in Financial Planning, are the usual next steps for advisers moving into full financial planning.",
+     "body": "FPSB Ireland"
+    }
+   ],
+   "shortcut": "The QFA Board is jointly governed — two representatives each from IOB, the LIA and the Insurance Institute, plus an independent chair — which is why the two study routes carry genuinely equal standing.",
+   "cpd": "Annual CPD accredited by IOB, LIA or the Insurance Institute. Minimum recognised unit is half an hour; a random sample is audited yearly.",
+   "bodies": [
+    {
+     "name": "IOB — Professional Diploma in Financial Advice (QFA)",
+     "url": "https://iob.ie/programme/financial-advice-qfa"
+    },
+    {
+     "name": "LIA — Certificate in Professional Financial Advice",
+     "url": "https://www.lia.ie/courses/certificate-in-professional-financial-advice"
+    },
+    {
+     "name": "Central Bank of Ireland — Minimum Competency Code",
+     "url": "https://www.centralbank.ie/regulation/how-we-regulate/authorisation/minimum-competency"
+    }
+   ]
+  },
+  "CAN": {
+   "regulators": "CIRO · provincial securities commissions · AMF (Quebec)",
+   "designation": "CFP® / QAFP®",
+   "typical_time": "2–4 years",
+   "gate": "Channel first, then exams",
+   "headline": "Canada makes you choose your channel before your exams. Securities, mutual funds, insurance and planning-only are four different regulatory tracks, and Quebec runs its own system entirely — different regulator, different title, different professional body.",
+   "steps": [
+    {
+     "n": 1,
+     "title": "Choose your channel",
+     "detail": "Securities and mutual funds are regulated by CIRO — formed from the 2023 merger of IIROC and the MFDA. Insurance and planning-only advice sit outside it. The channel decides everything downstream.",
+     "body": "CIRO"
+    },
+    {
+     "n": 2,
+     "title": "Canadian Securities Course",
+     "detail": "The CSC through the Canadian Securities Institute is the standard foundation, followed by the Conduct and Practices Handbook (CPH).",
+     "body": "CSI"
+    },
+    {
+     "n": 3,
+     "title": "Get sponsored and registered",
+     "detail": "A CIRO member firm sponsors you, and you register with your provincial securities commission. As in the US, the job precedes the licence.",
+     "body": "Provincial commissions"
+    },
+    {
+     "n": 4,
+     "title": "QAFP® or CFP® through FP Canada",
+     "detail": "QAFP is the faster entry designation; CFP is the profession's gold standard. Both run end-to-end through the FP Canada Institute.",
+     "body": "FP Canada"
+    },
+    {
+     "n": 5,
+     "title": "In Quebec, a different system",
+     "detail": "Quebec is regulated by the AMF, and the planning title (Pl.Fin. / F.Pl.) comes through the IQPF, not FP Canada. Plan for it if you intend to practise there.",
+     "body": "AMF / IQPF"
+    }
+   ],
+   "shortcut": "Timing note: the accreditation for the QAFP® educational pathway runs to 30 June 2026. If you are partway through, check where your credits stand before that date.",
+   "cpd": "FP Canada: 25 CE credits a year for CFP, 12 for QAFP, including ethics. CIRO registrants carry their own continuing-education cycle.",
+   "bodies": [
+    {
+     "name": "FP Canada — paths to certification",
+     "url": "https://www.fpcanada.ca/about-our-certifications/paths-to-certification"
+    },
+    {
+     "name": "Canadian Securities Institute",
+     "url": "https://www.csi.ca/"
+    },
+    {
+     "name": "CIRO",
+     "url": "https://www.ciro.ca/"
+    }
+   ]
+  },
+  "NGA": {
+   "regulators": "SEC Nigeria · CBN · NAICOM · PenCom",
+   "designation": "CIS (Chartered Institute of Stockbrokers)",
+   "typical_time": "2–4 years",
+   "gate": "Registration with the SEC is mandatory, not optional",
+   "headline": "Nigeria's system is registration-led. Anyone advising on securities must be registered with the SEC as an investment adviser — individually or corporately — and the legal framework was rewritten in 2025, so the ground here is genuinely newer than in the other four markets.",
+   "steps": [
+    {
+     "n": 1,
+     "title": "A recognised professional qualification",
+     "detail": "The SEC expects proof of relevant certification — most commonly CIS (Chartered Institute of Stockbrokers), CFA, or ICAN for the accounting route.",
+     "body": "CIS / CFA / ICAN"
+    },
+    {
+     "n": 2,
+     "title": "Register with the SEC",
+     "detail": "Mandatory for any individual or company dealing in securities or advising on them. Individual registration requires evidence of a minimum net worth of ₦500,000 and a sworn undertaking to comply.",
+     "body": "SEC Nigeria"
+    },
+    {
+     "n": 3,
+     "title": "Attach to a registered operator",
+     "detail": "Most advisers practise as sponsored individuals of a registered capital market operator rather than registering independently.",
+     "body": "SEC Nigeria"
+    },
+    {
+     "n": 4,
+     "title": "For stockbroking: CIS and NGX",
+     "detail": "Dealing on the exchange requires CIS membership and authorisation through an NGX dealing member firm.",
+     "body": "CIS / NGX"
+    },
+    {
+     "n": 5,
+     "title": "For banking and pensions: separate bodies",
+     "detail": "The CIBN governs the banking route; PenCom the pension side; NAICOM insurance. Nigeria's sectors are regulated separately rather than under one adviser regime.",
+     "body": "CIBN / PenCom / NAICOM"
+    }
+   ],
+   "shortcut": "The Investments and Securities Act 2025 was signed into law by President Tinubu, repealing the 2007 Act. Anything written about Nigerian capital-market registration before 2025 may describe a regime that no longer applies.",
+   "cpd": "Set by the professional body you qualify through — CIS, CIBN or ICAN each run their own mandatory continuing-education requirements.",
+   "bodies": [
+    {
+     "name": "SEC Nigeria — investment adviser (individual) registration",
+     "url": "https://sec.gov.ng/about/resources/checklists/individual-registration-requirements-for-each-cmo/investment-adviser-individual-registration-requirements/"
+    },
+    {
+     "name": "Chartered Institute of Stockbrokers",
+     "url": "https://cisnigeria.org/"
+    },
+    {
+     "name": "CFA Society Nigeria",
+     "url": "https://www.cfasocietynigeria.org/"
+    }
+   ]
+  }
+ },
+ "companies": {
+  "USA": [
+   {
+    "name": "BlackRock",
+    "ticker": "NYSE: BLK",
+    "segment": "Asset management",
+    "hq": "New York",
+    "scale": "World's largest asset manager",
+    "what": "Runs index funds, ETFs (iShares) and Aladdin, the risk platform much of the industry rents rather than builds.",
+    "why_watch": "It is the largest shareholder in a large majority of S&P 500 companies, which makes its stewardship votes a market force in their own right.",
+    "entry": "Analyst and technology programmes recruit heavily from undergraduate; Aladdin is a genuine route in for engineers rather than finance majors.",
+    "url": "https://www.blackrock.com/corporate/careers"
+   },
+   {
+    "name": "Vanguard",
+    "ticker": "Private (client-owned)",
+    "segment": "Asset management",
+    "hq": "Malvern, PA",
+    "scale": "Second-largest asset manager",
+    "what": "Index funds and ETFs under a mutual structure — the funds own the management company, so there are no outside shareholders.",
+    "why_watch": "Its ownership structure is the reason its fee pressure is structural rather than competitive, and it has reshaped pricing across the whole industry.",
+    "entry": "Large client-facing and CFP-sponsored advice operation; well-known for funding the CFP for internal candidates.",
+    "url": "https://www.vanguardjobs.com/"
+   },
+   {
+    "name": "Morgan Stanley",
+    "ticker": "NYSE: MS",
+    "segment": "Wealth management",
+    "hq": "New York",
+    "scale": "$9.22tn client assets (31 Mar 2026)",
+    "what": "The largest wealth management provider globally, spanning private wealth, workplace equity plans and E*TRADE self-directed.",
+    "why_watch": "Wealth management is now the ballast against investment-banking cyclicality — the clearest example of the industry's shift toward recurring fee income.",
+    "entry": "Financial Advisor Associate programme is the flagship career-changer route into advice.",
+    "url": "https://www.morganstanley.com/careers"
+   },
+   {
+    "name": "Fidelity Investments",
+    "ticker": "Private",
+    "segment": "Asset management & brokerage",
+    "hq": "Boston",
+    "scale": "Privately held, family-controlled",
+    "what": "Retirement recordkeeping, brokerage, funds and clearing — it sits underneath a large share of American workplace retirement plans.",
+    "why_watch": "Being private means it invests through cycles that listed rivals cannot, which shows up in technology and in headcount when others are cutting.",
+    "entry": "One of the largest US employers of entry-level licensed representatives; sponsors SIE/Series 7/63 study as part of onboarding.",
+    "url": "https://jobs.fidelity.com/"
+   },
+   {
+    "name": "Charles Schwab",
+    "ticker": "NYSE: SCHW",
+    "segment": "Brokerage & custody",
+    "hq": "Westlake, TX",
+    "scale": "Dominant RIA custodian",
+    "what": "Retail brokerage plus the custody platform that independent registered investment advisers build their firms on.",
+    "why_watch": "If you intend to go independent, your future firm most likely custodies here — watching Schwab is watching the economics of the whole RIA channel.",
+    "entry": "Its own advice arm hires and licenses; the bigger career signal is the health of the independent channel it serves.",
+    "url": "https://www.schwabjobs.com/"
+   },
+   {
+    "name": "Edward Jones",
+    "ticker": "Partnership",
+    "segment": "Retail advice",
+    "hq": "St. Louis",
+    "scale": "~19,000 advisers across North America",
+    "what": "A branch-office model — mostly one adviser per office, serving individual investors in smaller communities.",
+    "why_watch": "It is the counter-argument to consolidation: the largest adviser headcount in the country, built on small offices rather than big ones.",
+    "entry": "Runs one of the most structured career-changer programmes in the industry, with paid licensing study built into it.",
+    "url": "https://careers.edwardjones.com/"
+   },
+   {
+    "name": "J.P. Morgan Asset Management",
+    "ticker": "NYSE: JPM",
+    "segment": "Asset management",
+    "hq": "New York",
+    "scale": "$5.1tn AUM (2026)",
+    "what": "The asset and wealth management arm of JPMorgan Chase, spanning institutional mandates and private banking.",
+    "why_watch": "It has been the most acquisitive of the bank-owned managers in wealth, and its private-bank growth is the template rivals are copying.",
+    "entry": "Analyst programmes are highly structured and recruit two years ahead; the wealth-management track is separate from investment banking.",
+    "url": "https://careers.jpmorgan.com/"
+   },
+   {
+    "name": "State Street Global Advisors",
+    "ticker": "NYSE: STT",
+    "segment": "Asset management",
+    "hq": "Boston",
+    "scale": "$6.3tn AUM (2026)",
+    "what": "The asset-management arm of State Street, and the originator of the first US-listed ETF.",
+    "why_watch": "Custody and asset servicing sit alongside it — a reminder that much of the industry's headcount is in the plumbing, not the advice.",
+    "entry": "Operations, fund accounting and custody roles are a common non-front-office way into the industry.",
+    "url": "https://careers.statestreet.com/"
+   }
+  ],
+  "GBR": [
+   {
+    "name": "St. James's Place",
+    "ticker": "LSE: STJ",
+    "segment": "Wealth management",
+    "hq": "Cirencester",
+    "scale": "£220.0bn AUM (31 Dec 2025)",
+    "what": "The UK's largest advice-led wealth manager, working through a network of self-employed partners rather than salaried advisers.",
+    "why_watch": "Its charging structure has been under sustained regulatory and press scrutiny, making it the bellwether for how UK advice gets paid.",
+    "entry": "The SJP Academy is the best-known route for career changers into UK advice, with the Level 4 qualification built in.",
+    "url": "https://www.sjp.co.uk/careers"
+   },
+   {
+    "name": "Hargreaves Lansdown",
+    "ticker": "Private since Mar 2025",
+    "segment": "Investment platform",
+    "hq": "Bristol",
+    "scale": "Largest UK direct platform by client AUM",
+    "what": "The dominant direct-to-consumer investment platform — where UK retail investors hold their ISAs and SIPPs.",
+    "why_watch": "Taken private in March 2025 by CVC, Nordic Capital and the Abu Dhabi Investment Authority. What private ownership does to platform pricing is the thing to watch.",
+    "entry": "Large Bristol operation with helpdesk and client-facing roles that sponsor the Level 4 study.",
+    "url": "https://www.hl.co.uk/careers"
+   },
+   {
+    "name": "Schroders",
+    "ticker": "LSE: SDR",
+    "segment": "Asset management",
+    "hq": "London",
+    "scale": "One of the largest UK-listed managers",
+    "what": "Institutional and intermediary asset management, plus Schroders Personal Wealth and Cazenove Capital for private clients.",
+    "why_watch": "A traditional active manager pushing into wealth and private assets — the strategic response to passive fee compression, playing out in public.",
+    "entry": "Graduate scheme covers investment, distribution and operations; Cazenove is the private-client route.",
+    "url": "https://www.schroders.com/en/global/individual/careers/"
+   },
+   {
+    "name": "Rathbones",
+    "ticker": "LSE: RAT",
+    "segment": "Discretionary investment management",
+    "hq": "London",
+    "scale": "Merged with Investec W&I UK in 2023",
+    "what": "Discretionary portfolio management and financial planning for private clients, charities and trusts.",
+    "why_watch": "The 2023 Investec merger made it one of the largest UK discretionary managers — consolidation in this sector is the trend to track.",
+    "entry": "Investment management graduate route plus a financial planning track; CISI qualifications are the norm here rather than CII.",
+    "url": "https://www.rathbones.com/careers"
+   },
+   {
+    "name": "abrdn",
+    "ticker": "LSE: ABDN",
+    "segment": "Asset management & platforms",
+    "hq": "Edinburgh",
+    "scale": "Asset manager, adviser platform and ii",
+    "what": "Three businesses: institutional asset management, the adviser platform, and interactive investor for direct retail.",
+    "why_watch": "A long restructuring story. Whether an asset manager can successfully own a direct-to-consumer platform is being tested here in public.",
+    "entry": "Edinburgh and London graduate schemes; the ii side hires for a different, more product-and-technology profile.",
+    "url": "https://www.abrdn.com/en-gb/careers"
+   },
+   {
+    "name": "Legal & General",
+    "ticker": "LSE: LGEN",
+    "segment": "Insurance & asset management",
+    "hq": "London",
+    "scale": "Major UK pension risk transfer player",
+    "what": "Bulk annuities, pension risk transfer, retirement income and LGIM asset management.",
+    "why_watch": "Pension risk transfer is where UK defined-benefit schemes go to be settled — a structural, decades-long flow rather than a market cycle.",
+    "entry": "Actuarial and investment graduate schemes; the pensions side is the largest and least contested entry point.",
+    "url": "https://www.legalandgeneral.com/careers/"
+   },
+   {
+    "name": "Quilter",
+    "ticker": "LSE: QLT",
+    "segment": "Advice & platform",
+    "hq": "London",
+    "scale": "Advice network plus platform",
+    "what": "Financial advice through Quilter Financial Planning alongside the Quilter platform used by independent advisers.",
+    "why_watch": "One of the few UK groups that both employs advisers and runs the platform others use — a useful vantage point on where advice margins actually sit.",
+    "entry": "The Quilter Financial Adviser School is a structured route in for people with no financial services background.",
+    "url": "https://www.quilter.com/careers/"
+   }
+  ],
+  "IRL": [
+   {
+    "name": "Irish Life",
+    "ticker": "Great-West Lifeco (TSX: GWO)",
+    "segment": "Life assurance & pensions",
+    "hq": "Dublin",
+    "scale": "ILIM assets over €131bn (31 Dec 2024)",
+    "what": "Pensions, protection, health insurance and investments; Irish Life Investment Managers is one of the largest managers of Irish life and pension assets.",
+    "why_watch": "Auto-enrolment reshapes Irish pensions, and Irish Life sits at the centre of that shift by scale alone.",
+    "entry": "Graduate programmes in actuarial, investment and advice; QFA study is standard and employer-funded.",
+    "url": "https://www.irishlife.ie/careers/"
+   },
+   {
+    "name": "Davy",
+    "ticker": "Bank of Ireland",
+    "segment": "Wealth management & stockbroking",
+    "hq": "Dublin",
+    "scale": "Ireland's largest wealth manager",
+    "what": "Private client wealth management, institutional broking and corporate finance; acquired by Bank of Ireland in 2022.",
+    "why_watch": "Its integration into Bank of Ireland is the clearest test of whether independent Irish wealth management survives inside a bank.",
+    "entry": "Small, competitive graduate intake; the CFA is more common here than the QFA on the investment side.",
+    "url": "https://www.davy.ie/careers.html"
+   },
+   {
+    "name": "Bank of Ireland",
+    "ticker": "ISE/LSE: BIRG",
+    "segment": "Banking & wealth",
+    "hq": "Dublin",
+    "scale": "One of two Irish pillar banks",
+    "what": "Retail and commercial banking across Ireland and the UK, plus wealth and insurance through Davy and New Ireland.",
+    "why_watch": "A two-bank retail market is unusually concentrated; how it prices advice after acquiring Davy sets the tone for the sector.",
+    "entry": "Graduate programme with a dedicated wealth and insurance stream; QFA funded as part of it.",
+    "url": "https://careers.bankofireland.com/"
+   },
+   {
+    "name": "AIB",
+    "ticker": "ISE/LSE: A5G",
+    "segment": "Banking & wealth",
+    "hq": "Dublin",
+    "scale": "The other Irish pillar bank",
+    "what": "Retail and SME banking, with wealth and life products delivered in partnership rather than fully in-house.",
+    "why_watch": "Post-bailout, the State's remaining stake and its unwind is a live political and market story.",
+    "entry": "Graduate programme plus large branch-network entry; the advice track runs through QFA sponsorship.",
+    "url": "https://aib.ie/careers"
+   },
+   {
+    "name": "Mediolanum International Funds",
+    "ticker": "Banca Mediolanum (BIT: BMED)",
+    "segment": "Fund management",
+    "hq": "Dublin",
+    "scale": "€76.9bn AUM, 160+ Dublin staff (Dec 2025)",
+    "what": "Manages over 70 funds from Dublin for the wider Mediolanum group across Europe.",
+    "why_watch": "A clean example of the IFSC's real function: Irish-domiciled funds managed in Dublin for continental European investors.",
+    "entry": "Investment, risk and fund-operations roles; smaller and less hierarchical than the pillar banks.",
+    "url": "https://www.mifl.ie/"
+   },
+   {
+    "name": "Zurich Life Ireland",
+    "ticker": "SWX: ZURN",
+    "segment": "Life assurance & investments",
+    "hq": "Blackrock, Co. Dublin",
+    "scale": "Major Irish pensions and investment provider",
+    "what": "Pensions, investment bonds and protection sold largely through independent brokers rather than direct.",
+    "why_watch": "Its broker-led model makes it a good read on the health of Ireland's independent advice channel.",
+    "entry": "Broker consultant roles are a common route into Irish advice; QFA expected or funded.",
+    "url": "https://www.zurich.ie/about-us/careers/"
+   },
+   {
+    "name": "State Street Ireland",
+    "ticker": "NYSE: STT",
+    "segment": "Fund administration & custody",
+    "hq": "Dublin",
+    "scale": "Among Ireland's largest financial employers",
+    "what": "Fund administration, custody and transfer agency for Irish-domiciled funds.",
+    "why_watch": "Fund administration is where Irish financial services headcount actually grew while banking employment fell — the sector's quiet centre of gravity.",
+    "entry": "The largest volume graduate and school-leaver entry point in Irish financial services.",
+    "url": "https://careers.statestreet.com/"
+   }
+  ],
+  "CAN": [
+   {
+    "name": "Royal Bank of Canada",
+    "ticker": "TSX/NYSE: RY",
+    "segment": "Banking & wealth",
+    "hq": "Toronto",
+    "scale": "AUM US$805.2bn (2024); largest Canadian bank",
+    "what": "Full-service banking with RBC Dominion Securities for full-service brokerage and RBC Wealth Management internationally.",
+    "why_watch": "The Big Six control close to 90% of Canadian banking assets, and RBC sets the pace among them.",
+    "entry": "Structured wealth-management associate programmes; CSC funded during onboarding.",
+    "url": "https://jobs.rbc.com/"
+   },
+   {
+    "name": "Toronto-Dominion Bank",
+    "ticker": "TSX/NYSE: TD",
+    "segment": "Banking & wealth",
+    "hq": "Toronto",
+    "scale": "$2.1tn assets (30 Apr 2026)",
+    "what": "Canadian and US retail banking, with TD Wealth covering private banking, planning and estate services.",
+    "why_watch": "Its large US retail footprint makes it the Canadian bank most directly exposed to US regulatory and tariff conditions.",
+    "entry": "Wealth advisory associate route plus a large branch-to-advice internal pipeline.",
+    "url": "https://jobs.td.com/"
+   },
+   {
+    "name": "Bank of Montreal",
+    "ticker": "TSX/NYSE: BMO",
+    "segment": "Banking & wealth",
+    "hq": "Toronto",
+    "scale": "One of the Big Six",
+    "what": "Personal and commercial banking, BMO Nesbitt Burns full-service brokerage, and BMO Global Asset Management.",
+    "why_watch": "Its ETF business has been among the more aggressive Canadian challengers to the incumbent fund model.",
+    "entry": "Nesbitt Burns investment advisor trainee route; strong internal mobility from branch roles.",
+    "url": "https://jobs.bmo.com/"
+   },
+   {
+    "name": "Sun Life",
+    "ticker": "TSX/NYSE: SLF",
+    "segment": "Insurance & asset management",
+    "hq": "Toronto",
+    "scale": "Insurance plus MFS and SLC Management",
+    "what": "Life and health insurance, group benefits, and asset management through MFS Investment Management and SLC Management.",
+    "why_watch": "Group benefits and retirement give it a workplace channel the banks have to buy their way into.",
+    "entry": "Advisor career path with licensing sponsorship; actuarial and investment graduate streams alongside.",
+    "url": "https://www.sunlife.com/en/careers/"
+   },
+   {
+    "name": "Manulife",
+    "ticker": "TSX/NYSE: MFC",
+    "segment": "Insurance & wealth",
+    "hq": "Toronto",
+    "scale": "Global insurer with a large Asian book",
+    "what": "Insurance and wealth across Canada, the US (John Hancock) and Asia.",
+    "why_watch": "Its Asian business is the growth engine and the volatility — a Canadian-listed name whose fortunes are only partly Canadian.",
+    "entry": "Advisor and planning roles alongside actuarial; the global footprint makes internal moves genuinely international.",
+    "url": "https://www.manulife.com/en/careers.html"
+   },
+   {
+    "name": "Brookfield",
+    "ticker": "TSX/NYSE: BN",
+    "segment": "Alternative assets",
+    "hq": "Toronto",
+    "scale": "Global alternatives manager",
+    "what": "Infrastructure, renewable power, real estate, private equity and credit — with a growing insurance arm.",
+    "why_watch": "Canada's most globally significant financial export, and the clearest local example of capital moving from public markets into private ones.",
+    "entry": "Highly competitive analyst intake; private-markets experience here travels well internationally.",
+    "url": "https://www.brookfield.com/careers"
+   },
+   {
+    "name": "IG Wealth Management",
+    "ticker": "TSX: IGM",
+    "segment": "Retail advice",
+    "hq": "Winnipeg",
+    "scale": "One of Canada's largest advice networks",
+    "what": "Financial planning and investment advice delivered through a large network of consultants.",
+    "why_watch": "It is the Canadian test case for whether a planning-led network can hold fee ground against bank-owned distribution.",
+    "entry": "One of the more accessible entry routes into Canadian advice; CFP/QAFP study supported.",
+    "url": "https://www.ig.ca/en/careers"
+   }
+  ],
+  "NGA": [
+   {
+    "name": "Zenith Bank",
+    "ticker": "NGX: ZENITHBANK",
+    "segment": "Banking",
+    "hq": "Lagos",
+    "scale": "~₦5.42tn market cap (2026 NGX data)",
+    "what": "Corporate and retail banking, consistently among the most profitable Nigerian banks.",
+    "why_watch": "Top of the valuation ladder among the twelve listed banks after the recapitalisation round.",
+    "entry": "Graduate trainee programme is among the most competitive routes into Nigerian banking.",
+    "url": "https://www.zenithbank.com/careers/"
+   },
+   {
+    "name": "Access Holdings",
+    "ticker": "NGX: ACCESSCORP",
+    "segment": "Banking",
+    "hq": "Lagos",
+    "scale": "₦53.43tn assets, Q1 2026 — largest by assets",
+    "what": "Nigeria's largest bank by assets, with the most aggressive pan-African expansion of the group.",
+    "why_watch": "Its scale came through acquisition; whether that consolidates profitably is the open question in Nigerian banking.",
+    "entry": "Large graduate intake across banking, plus asset management through its subsidiaries.",
+    "url": "https://www.accessbankplc.com/careers"
+   },
+   {
+    "name": "GTCO",
+    "ticker": "NGX: GTCO",
+    "segment": "Banking & asset management",
+    "hq": "Lagos",
+    "scale": "Among the most valuable listed banks",
+    "what": "Guaranty Trust Holding Company — banking plus dedicated asset management, pension and payments subsidiaries.",
+    "why_watch": "The holding-company restructure was designed to grow non-banking income; whether that works is visible in its segment reporting.",
+    "entry": "Its asset management and pension arms are a rare Nigerian route into buy-side work straight from graduation.",
+    "url": "https://www.gtcoplc.com/careers/"
+   },
+   {
+    "name": "United Bank for Africa",
+    "ticker": "NGX: UBA",
+    "segment": "Banking",
+    "hq": "Lagos",
+    "scale": "₦33.13tn assets (Q1 2026)",
+    "what": "Pan-African banking across 20+ African countries plus the UK, US and UAE.",
+    "why_watch": "The widest African footprint of the Nigerian banks — the clearest way to hold Nigerian-listed exposure to the rest of the continent.",
+    "entry": "Graduate programme with genuine cross-border mobility within Africa.",
+    "url": "https://www.ubagroup.com/careers/"
+   },
+   {
+    "name": "Stanbic IBTC Holdings",
+    "ticker": "NGX: STANBIC",
+    "segment": "Banking, asset & wealth management",
+    "hq": "Lagos",
+    "scale": "Standard Bank Group subsidiary",
+    "what": "Banking alongside the largest non-bank asset management and pension fund administration businesses in Nigeria.",
+    "why_watch": "Where Nigerian wealth management is most institutionally developed — the closest local equivalent to a full-service wealth manager.",
+    "entry": "The most direct Nigerian route into asset management and pension fund administration; CIS and CFA both valued.",
+    "url": "https://www.stanbicibtcbank.com/nigeria/careers"
+   },
+   {
+    "name": "ARM",
+    "ticker": "Private",
+    "segment": "Asset management",
+    "hq": "Lagos",
+    "scale": "Long-established independent manager",
+    "what": "Asset and Resource Management — mutual funds, pensions, private equity and infrastructure investment.",
+    "why_watch": "One of the few Nigerian asset managers built independently of a bank, which makes it a cleaner read on domestic savings flows.",
+    "entry": "Small, selective analyst intake; CFA candidates favoured over banking-track qualifications.",
+    "url": "https://www.arm.com.ng/"
+   },
+   {
+    "name": "Chapel Hill Denham",
+    "ticker": "Private",
+    "segment": "Investment banking & advisory",
+    "hq": "Lagos",
+    "scale": "Leading domestic advisory house",
+    "what": "Investment banking, securities trading and investment management, with a strong infrastructure-fund franchise.",
+    "why_watch": "Its infrastructure fund work sits at the point where Nigerian pension capital meets domestic infrastructure — the flow to watch.",
+    "entry": "Very small graduate intake; the domestic route into deal-side finance.",
+    "url": "https://www.chapelhilldenham.com/"
+   }
+  ]
+ }
+}

@@ -1,0 +1,65 @@
+# Publish the three dashboards to GitHub Pages.
+#
+# build_site.py inlines each dashboard's styles, script and data into one
+# self-contained page, so what gets deployed is three HTML files with no
+# fetches and nothing to configure on the host.
+#
+# This also runs after the data refresh commits a new snapshot, so the live
+# site follows the data without anyone doing anything.
+
+name: Deploy site
+
+on:
+  push:
+    branches:
+      - claude/five-market-economic-tracker-x5pg3t
+    paths:
+      - "web/**"
+      - "data/**"
+      - "build_site.py"
+      - "export_html.py"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race; queue the second rather than cancelling it, so
+# the last commit is always the one that ends up live.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check the data before publishing it
+        run: python3 -m unittest discover -s tests
+
+      - name: Build the site
+        run: python3 build_site.py
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
