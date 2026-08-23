@@ -276,6 +276,33 @@ class SnapshotTests(unittest.TestCase):
             self.assertIn("error", snapshot.load_context(root))
 
 
+class ContextOnlyRefreshTests(unittest.TestCase):
+    """`fetch_econ.py --context-only` must swap the curated layer and nothing else."""
+
+    def setUp(self):
+        import fetch_econ
+        self.fetch_econ = fetch_econ
+        self.dir = tempfile.mkdtemp()
+        self.path = os.path.join(self.dir, "econ.json")
+        with open(self.path, "w") as handle:
+            json.dump({"meta": {"observations": 42}, "context": {"as_of": "1999-01-01"},
+                       "series": {"USA": {}}}, handle)
+
+    def test_replaces_only_the_context(self):
+        rc = self.fetch_econ.refresh_context(self.path)
+        self.assertEqual(rc, 0)
+        with open(self.path) as handle:
+            result = json.load(handle)
+        # The curated layer moved on; the fetched data did not.
+        self.assertNotEqual(result["context"].get("as_of"), "1999-01-01")
+        self.assertEqual(result["meta"]["observations"], 42)
+        self.assertIn("USA", result["series"])
+
+    def test_missing_snapshot_is_an_error_not_a_crash(self):
+        self.assertEqual(
+            self.fetch_econ.refresh_context(os.path.join(self.dir, "nope.json")), 2)
+
+
 class ShippedSnapshotTests(unittest.TestCase):
     """Guards on the committed data/econ.json, so a bad refresh is caught."""
 
@@ -297,6 +324,18 @@ class ShippedSnapshotTests(unittest.TestCase):
     def test_every_country_scores(self):
         for iso3 in countries.ISO3_CODES:
             self.assertIsNotNone(self.snap["pulse"][iso3]["latest"], iso3)
+
+    def test_every_indicator_came_back(self):
+        # A silent indicator failure loses a whole dimension - the governance
+        # series went missing exactly this way once already.
+        self.assertEqual(self.snap["meta"]["errors"], [],
+                         f"indicators failed: {[e['indicator'] for e in self.snap['meta']['errors']]}")
+
+    def test_curated_context_covers_every_country(self):
+        countries_ctx = self.snap.get("context", {}).get("countries", {})
+        for iso3 in countries.ISO3_CODES:
+            self.assertIn(iso3, countries_ctx, iso3)
+            self.assertIn("policy_rate", countries_ctx[iso3], iso3)
 
     def test_history_really_does_go_back_fifty_years(self):
         self.assertLessEqual(self.snap["meta"]["start_year"], 1976)

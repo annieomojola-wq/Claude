@@ -45,9 +45,16 @@
   <section class="card">
     <div class="card-head">
       <h2>Fifty years of pulse</h2>
-      <div class="seg" id="pulse-view" role="group" aria-label="Pulse view">
-        <button type="button" data-view="chart" aria-pressed="true">Chart</button>
-        <button type="button" data-view="table" aria-pressed="false">Table</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <div class="seg" id="pulse-smooth" role="group" aria-label="Smoothing">
+          <button type="button" data-smooth="raw" aria-pressed="true">Yearly</button>
+          <button type="button" data-smooth="avg3" aria-pressed="false">3-yr avg</button>
+          <button type="button" data-smooth="avg5" aria-pressed="false">5-yr avg</button>
+        </div>
+        <div class="seg" id="pulse-view" role="group" aria-label="Pulse view">
+          <button type="button" data-view="chart" aria-pressed="true">Chart</button>
+          <button type="button" data-view="table" aria-pressed="false">Table</button>
+        </div>
       </div>
     </div>
     <p class="card-note">

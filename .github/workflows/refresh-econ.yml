@@ -18,6 +18,7 @@ on:
     paths:
       - "econ/**"
       - "fetch_econ.py"
+      - "data/econ_context.json"
       - ".github/workflows/refresh-econ.yml"
 
 permissions:

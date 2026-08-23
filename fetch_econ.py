@@ -5,6 +5,7 @@
     python3 fetch_econ.py --provider worldbank     # live data, no API key needed
     python3 fetch_econ.py --provider worldbank --indices yahoo
     python3 fetch_econ.py --provider worldbank --start 1960
+    python3 fetch_econ.py --context-only           # re-embed the curated layer only
 
 The result is written to data/econ.json, which web/econ.html reads.
 """
@@ -19,6 +20,31 @@ import sys
 from econ import countries, indicators, providers, snapshot
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+
+
+def refresh_context(path: str) -> int:
+    """Swap the curated context into an existing snapshot, in place."""
+    if not os.path.exists(path):
+        print(f"error: {path} does not exist yet - run a real fetch first", file=sys.stderr)
+        return 2
+    with open(path) as handle:
+        result = json.load(handle)
+
+    context = snapshot.load_context(ROOT)
+    if not context:
+        print("error: data/econ_context.json is missing or empty", file=sys.stderr)
+        return 2
+    if "error" in context:
+        print(f"error: {context['error']}", file=sys.stderr)
+        return 2
+
+    result["context"] = context
+    with open(path, "w") as handle:
+        json.dump(result, handle, indent=1)
+        handle.write("\n")
+    print(f"context re-embedded (checked {context.get('as_of', 'undated')}) "
+          f"-> {os.path.relpath(path, ROOT)}")
+    return 0
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -38,6 +64,10 @@ def main(argv: list[str] | None = None) -> int:
                         help="pause between World Bank requests (default: 0.2s)")
     parser.add_argument("--seed", default="2026", help="demo provider seed")
     parser.add_argument("--out", default=os.path.join(ROOT, "data", "econ.json"))
+    parser.add_argument("--context-only", action="store_true",
+                        help="re-embed data/econ_context.json into the existing snapshot "
+                             "without touching the network. The curated layer changes far "
+                             "more often than the World Bank series do.")
     parser.add_argument("--quiet", action="store_true")
     parser.add_argument("--fail-under", type=int, default=0, metavar="N",
                         help="exit non-zero if fewer than N observations came back, so a "
@@ -47,6 +77,9 @@ def main(argv: list[str] | None = None) -> int:
     def progress(msg: str) -> None:
         if not args.quiet:
             print(msg, file=sys.stderr)
+
+    if args.context_only:
+        return refresh_context(args.out)
 
     try:
         provider = providers.get_provider(args.provider, seed=args.seed)

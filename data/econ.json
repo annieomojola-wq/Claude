@@ -59821,7 +59821,8 @@
      "as_of": "2026-07-29",
      "action": "held",
      "next_meeting": "2026-09-16",
-     "note": "Held at the July FOMC. No August meeting; next decision 15-16 September."
+     "note": "Held at the July FOMC. No August meeting; next decision 15-16 September.",
+     "short": "3.50\u20133.75%"
     },
     "signals": [
      {
@@ -59888,7 +59889,8 @@
      "as_of": "2026-06-18",
      "action": "held",
      "next_meeting": null,
-     "note": "Bank Rate held by the MPC in June."
+     "note": "Bank Rate held by the MPC in June.",
+     "short": "3.75%"
     },
     "signals": [
      {
@@ -59955,7 +59957,8 @@
      "as_of": "2026-07-23",
      "action": "held",
      "next_meeting": null,
-     "note": "Set by the ECB for the whole euro area, not for Ireland specifically."
+     "note": "Set by the ECB for the whole euro area, not for Ireland specifically.",
+     "short": "2.25%"
     },
     "signals": [
      {
@@ -60029,7 +60032,8 @@
      "as_of": "2026-07-15",
      "action": "held",
      "next_meeting": null,
-     "note": "Sixth consecutive hold of the overnight rate target."
+     "note": "Sixth consecutive hold of the overnight rate target.",
+     "short": "2.25%"
     },
     "signals": [
      {
@@ -60096,7 +60100,8 @@
      "as_of": "2026-05-20",
      "action": "held",
      "next_meeting": null,
-     "note": "Retained at the 305th MPC meeting, after a cut earlier in 2026."
+     "note": "Retained at the 305th MPC meeting, after a cut earlier in 2026.",
+     "short": "26.5%"
     },
     "signals": [
      {

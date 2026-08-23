@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Export the dashboard as one self-contained HTML file.
+"""Export a dashboard as one self-contained HTML file.
 
-    python3 export_html.py                     # -> dist/dashboard.html
+    python3 export_html.py                          # -> dist/dashboard.html
+    python3 export_html.py --dashboard econ         # -> dist/econ.html
     python3 export_html.py --out ~/Desktop/dashboard.html
 
 The stylesheet, the script and the current snapshot are all inlined, so the
@@ -28,26 +29,55 @@ FONTS = (
 )
 
 
-def body_of(html: str) -> str:
+#: Each dashboard: its page, its stylesheets, its script, its data file, and
+#: the global the inlined payload is assigned to.
+DASHBOARDS = {
+    "stocks": {
+        "html": "index.html",
+        "css": ["styles.css"],
+        "js": "app.js",
+        "data": os.path.join("data", "snapshot.json"),
+        "global": "__SNAPSHOT__",
+        "out": "dashboard.html",
+        "title": "Exchange Drop Monitor",
+    },
+    "econ": {
+        "html": "econ.html",
+        # styles.css owns the base tokens; econ.css layers the tracker on top.
+        "css": ["styles.css", "econ.css"],
+        "js": "econ.js",
+        "data": os.path.join("data", "econ.json"),
+        "global": "__ECON__",
+        "out": "econ.html",
+        "title": "Five-Market Economic Tracker",
+    },
+}
+
+
+def body_of(html: str, script_name: str, page: str) -> str:
     """The markup between <body> and </body>, minus the script tag."""
     match = re.search(r"<body>(.*)</body>", html, re.S)
     if not match:
-        raise SystemExit("web/index.html has no <body> - cannot export")
+        raise SystemExit(f"web/{page} has no <body> - cannot export")
     body = match.group(1)
-    return re.sub(r'\s*<script src="app\.js"></script>', "", body).strip()
+    pattern = r'\s*<script src="%s"></script>' % re.escape(script_name)
+    return re.sub(pattern, "", body).strip()
 
 
-def title_of(html: str) -> str:
+def title_of(html: str, fallback: str) -> str:
     match = re.search(r"<title>(.*?)</title>", html, re.S)
-    return match.group(1).strip() if match else "Exchange Drop Monitor"
+    return match.group(1).strip() if match else fallback
 
 
-def build(root: str, snapshot_path: str, fragment: bool = False) -> str:
-    with open(os.path.join(WEB, "index.html")) as handle:
+def build(root: str, snapshot_path: str, fragment: bool = False,
+          dashboard: str = "stocks") -> str:
+    spec = DASHBOARDS[dashboard]
+    with open(os.path.join(WEB, spec["html"])) as handle:
         html = handle.read()
-    with open(os.path.join(WEB, "styles.css")) as handle:
-        css = handle.read()
-    with open(os.path.join(WEB, "app.js")) as handle:
+    css = "\n".join(
+        open(os.path.join(WEB, name)).read() for name in spec["css"]
+    )
+    with open(os.path.join(WEB, spec["js"])) as handle:
         js = handle.read()
     with open(snapshot_path) as handle:
         snapshot = json.load(handle)
@@ -57,11 +87,11 @@ def build(root: str, snapshot_path: str, fragment: bool = False) -> str:
     built = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
     parts = [
-        f"<title>{title_of(html)}</title>",
+        f"<title>{title_of(html, spec['title'])}</title>",
         FONTS,
         f"<style>\n{css}\n</style>",
-        body_of(html),
-        f"<script>window.__SNAPSHOT__ = {payload};</script>",
+        body_of(html, spec["js"], spec["html"]),
+        f"<script>window.{spec['global']} = {payload};</script>",
         f"<script>\n{js}\n</script>",
         f"<!-- exported {built} -->",
     ]
@@ -78,13 +108,21 @@ def build(root: str, snapshot_path: str, fragment: bool = False) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--snapshot", default=os.path.join(ROOT, "data", "snapshot.json"))
-    parser.add_argument("--out", default=os.path.join(ROOT, "dist", "dashboard.html"))
+    parser.add_argument("--dashboard", default="stocks", choices=sorted(DASHBOARDS),
+                        help="which dashboard to export (default: stocks)")
+    parser.add_argument("--snapshot", default=None,
+                        help="data file to inline (default: the dashboard's own)")
+    parser.add_argument("--out", default=None,
+                        help="output path (default: dist/<dashboard>.html)")
     parser.add_argument("--fragment", action="store_true",
                         help="omit the html/head wrapper (for hosts that supply their own)")
     args = parser.parse_args()
 
-    page = build(ROOT, args.snapshot, fragment=args.fragment)
+    spec = DASHBOARDS[args.dashboard]
+    args.snapshot = args.snapshot or os.path.join(ROOT, spec["data"])
+    args.out = args.out or os.path.join(ROOT, "dist", spec["out"])
+
+    page = build(ROOT, args.snapshot, fragment=args.fragment, dashboard=args.dashboard)
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     with open(args.out, "w") as handle:
         handle.write(page)
