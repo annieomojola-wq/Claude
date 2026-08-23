@@ -12,6 +12,13 @@ on:
   schedule:
     - cron: "15 6 * * 1"   # Mondays, 06:15 UTC
   workflow_dispatch:
+  # Refetch when the pipeline itself changes: editing the indicator catalogue
+  # is exactly the moment the committed snapshot goes stale.
+  push:
+    paths:
+      - "econ/**"
+      - "fetch_econ.py"
+      - ".github/workflows/refresh-econ.yml"
 
 permissions:
   contents: write
