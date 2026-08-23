@@ -1,0 +1,55 @@
+# Scheduled refresh of the economic tracker.
+#
+# The World Bank series are annual and revise slowly, so this runs weekly
+# rather than daily. The equity index levels it picks up alongside them are
+# the only part that moves day to day.
+#
+# Run it by hand any time from the Actions tab ("Run workflow").
+
+name: Refresh economic tracker
+
+on:
+  schedule:
+    - cron: "15 6 * * 1"   # Mondays, 06:15 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch indicators
+        # --fail-under guards against committing a snapshot that came back
+        # hollow because the API was having a bad morning. A full run is
+        # ~7,000 observations, so 4,000 is a floor, not a target.
+        run: |
+          python3 fetch_econ.py --provider worldbank --indices yahoo \
+            --quiet --fail-under 4000
+
+      - name: Keep the snapshot even if the commit cannot land
+        uses: actions/upload-artifact@v4
+        with:
+          name: econ-snapshot
+          path: data/econ.json
+          retention-days: 14
+
+      - name: Commit the snapshot if it changed
+        run: |
+          if git diff --quiet -- data/econ.json; then
+            echo "no change"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/econ.json
+          git commit -m "Refresh economic tracker ($(date -u +%Y-%m-%d))"
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

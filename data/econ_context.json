@@ -1,0 +1,364 @@
+{
+ "as_of": "2026-08-23",
+ "kind": "curated",
+ "note": "Hand-maintained. None of this comes from an API that covers all five markets, so it is typed in, dated and sourced rather than fetched. The 50-year series in econ.json refresh themselves; this file does not. Re-verify it against the linked sources before leaning on it.",
+ "countries": {
+  "USA": {
+   "policy_rate": {
+    "display": "3.50-3.75%",
+    "value": 3.75,
+    "as_of": "2026-07-29",
+    "action": "held",
+    "next_meeting": "2026-09-16",
+    "note": "Held at the July FOMC. No August meeting; next decision 15-16 September."
+   },
+   "signals": [
+    {
+     "label": "Unemployment",
+     "value": "4.2%",
+     "as_of": "Jun 2026",
+     "tone": "neutral",
+     "note": "Little changed; job gains keeping pace with the workforce."
+    },
+    {
+     "label": "PCE inflation",
+     "value": "4.5%",
+     "as_of": "Q1 2026",
+     "tone": "bad",
+     "note": "Well above the 2% goal, with tariffs a named contributor."
+    },
+    {
+     "label": "Real GDP growth",
+     "value": "+2.0% annualised",
+     "as_of": "Q1 2026",
+     "tone": "good",
+     "note": "Solid pace despite elevated uncertainty."
+    },
+    {
+     "label": "Consumer confidence",
+     "value": "57 (Conference Board)",
+     "as_of": "Aug 2026",
+     "tone": "bad",
+     "note": "Near COVID-era lows; Michigan at 52.2."
+    }
+   ],
+   "politics": {
+    "summary": "Second Trump administration. Tariff policy is the dominant economic variable and the leading driver of economic disapproval.",
+    "next_election": "Midterms, 3 November 2026",
+    "watch": [
+     "Whether tariff pass-through keeps PCE inflation above target",
+     "September FOMC: the first cut-or-hold call since inflation re-accelerated",
+     "Midterm outcome and any affordability legislation that follows"
+    ]
+   },
+   "markets_business": {
+    "ipo": "H1 2026 US issuance spiked after several subdued years - on proceeds alone, the first half already ranks as the second most active full year on record. AI and AI-adjacent names dominate; the top 10 global IPOs were almost entirely US-listed.",
+    "note": "The stagflation comparison being drawn is to the late 1970s: 2% growth alongside 4.5% inflation."
+   },
+   "sources": [
+    {
+     "label": "FOMC statement, 29 July 2026",
+     "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm"
+    },
+    {
+     "label": "EY US IPO market trends",
+     "url": "https://www.ey.com/en_us/insights/ipo/ipo-market-trends"
+    },
+    {
+     "label": "CBO Budget and Economic Outlook 2026-2036",
+     "url": "https://www.cbo.gov/publication/62105"
+    }
+   ]
+  },
+  "GBR": {
+   "policy_rate": {
+    "display": "3.75%",
+    "value": 3.75,
+    "as_of": "2026-06-18",
+    "action": "held",
+    "next_meeting": null,
+    "note": "Bank Rate held by the MPC in June."
+   },
+   "signals": [
+    {
+     "label": "Core CPI",
+     "value": "2.6%",
+     "as_of": "12m to Jun 2026",
+     "tone": "good",
+     "note": "Fell more than expected from 2.8% in May."
+    },
+    {
+     "label": "Unemployment",
+     "value": "4.9%",
+     "as_of": "3m to May 2026",
+     "tone": "bad",
+     "note": "Forecast to peak around 5.3% this year."
+    },
+    {
+     "label": "GDP growth forecast",
+     "value": "1.1% for 2026",
+     "as_of": "OBR",
+     "tone": "bad",
+     "note": "Cut from the 1.4% forecast at the last Budget."
+    },
+    {
+     "label": "Company insolvencies",
+     "value": "~6% below the 3-year monthly average",
+     "as_of": "2026 to date",
+     "tone": "good",
+     "note": "Driven by fewer creditors' voluntary liquidations."
+    }
+   ],
+   "politics": {
+    "summary": "Labour government. Fiscal headroom and gilt yields are the binding constraint on policy; the Autumn Budget raised taxes and borrowing is forecast to fall to £67bn by 2030-31.",
+    "next_election": "General election due by August 2029",
+    "watch": [
+     "Whether inflation turns back up from July as several forecasters expect",
+     "Gilt yields, which markets are still pricing punitively",
+     "Unemployment on the way to its forecast 5.3% peak"
+    ]
+   },
+   "markets_business": {
+    "ipo": "EMEA raised $11bn across 72 IPOs in H1 2026. London's pipeline is building across defence, industrials, financials and technology, but the region is a small share of a US-dominated year.",
+    "note": "March-April 2026 saw 200 connected real-estate companies enter administration in a single cluster - a sector event, not a broad deterioration."
+   },
+   "sources": [
+    {
+     "label": "Company Insolvency Statistics, July 2026",
+     "url": "https://www.gov.uk/government/statistics/company-insolvencies-july-2026/commentary-company-insolvency-statistics-july-2026"
+    },
+    {
+     "label": "Commons Library: interest rates and monetary policy",
+     "url": "https://commonslibrary.parliament.uk/research-briefings/sn02802/"
+    },
+    {
+     "label": "PwC Global IPO Watch H1 2026",
+     "url": "https://www.pwc.co.uk/services/audit/insights/global-ipo-watch.html"
+    }
+   ]
+  },
+  "IRL": {
+   "policy_rate": {
+    "display": "2.25% (ECB deposit facility)",
+    "value": 2.25,
+    "as_of": "2026-07-23",
+    "action": "held",
+    "next_meeting": null,
+    "note": "Set by the ECB for the whole euro area, not for Ireland specifically."
+   },
+   "signals": [
+    {
+     "label": "Modified domestic demand",
+     "value": "+4.3%",
+     "as_of": "Q1 2026",
+     "tone": "good",
+     "note": "The measure that actually tracks the domestic economy."
+    },
+    {
+     "label": "GDP",
+     "value": "-2.5% forecast for 2026",
+     "as_of": "EU Commission",
+     "tone": "neutral",
+     "note": "A base effect from 2025's front-loaded pharmaceutical exports, not a domestic contraction."
+    },
+    {
+     "label": "Unemployment",
+     "value": "5.0%",
+     "as_of": "Jun 2026",
+     "tone": "neutral",
+     "note": "Up slightly; employment growth at a five-year low."
+    },
+    {
+     "label": "Inflation",
+     "value": "3.1-3.5% forecast for 2026",
+     "as_of": "2026",
+     "tone": "bad",
+     "note": "Outlook worsened on Middle East energy prices."
+    },
+    {
+     "label": "Budget balance",
+     "value": "+1.8% of GDP",
+     "as_of": "2025",
+     "tone": "good",
+     "note": "Surplus, but resting on concentrated corporation tax."
+    }
+   ],
+   "politics": {
+    "summary": "Fianna Fail-Fine Gael coalition. The structural risk is not political but fiscal concentration: a handful of multinationals fund a large share of the surplus.",
+    "next_election": "General election due by 2030",
+    "watch": [
+     "Corporation tax receipts and any change in US tax or tariff treatment of multinationals",
+     "The gap between GDP and modified domestic demand - only the second one is Ireland",
+     "Energy prices feeding the 2026 inflation forecast"
+    ]
+   },
+   "markets_business": {
+    "ipo": "Part of the EMEA total ($11bn across 72 IPOs in H1 2026). The ISEQ is small and thinly traded; Irish listings are episodic rather than a running indicator.",
+    "note": "Ireland's headline GDP is distorted by multinational balance-sheet moves. Treat the FDI and GDP series in the historical charts with that in mind."
+   },
+   "sources": [
+    {
+     "label": "European Commission economic forecast for Ireland",
+     "url": "https://economy-finance.ec.europa.eu/economic-surveillance-eu-member-states/country-pages/ireland/economic-forecast-ireland_en"
+    },
+    {
+     "label": "IMF 2026 Article IV consultation",
+     "url": "https://www.elibrary.imf.org/view/journals/002/2026/156/article-A001-en.xml"
+    },
+    {
+     "label": "NTMA: Irish economy and public finances",
+     "url": "https://www.ntma.ie/business-areas/funding-and-debt-management/investor-relations/irish-economy"
+    }
+   ]
+  },
+  "CAN": {
+   "policy_rate": {
+    "display": "2.25%",
+    "value": 2.25,
+    "as_of": "2026-07-15",
+    "action": "held",
+    "next_meeting": null,
+    "note": "Sixth consecutive hold of the overnight rate target."
+   },
+   "signals": [
+    {
+     "label": "Headline inflation",
+     "value": "above 3%",
+     "as_of": "mid-2026",
+     "tone": "bad",
+     "note": "Expected to average 2.5% across 2026."
+    },
+    {
+     "label": "Unemployment",
+     "value": "6.5-7%",
+     "as_of": "2026",
+     "tone": "bad",
+     "note": "Soft labour market; forecast to average 6.5% for the year."
+    },
+    {
+     "label": "GDP growth",
+     "value": "1.3% forecast for 2026",
+     "as_of": "2026",
+     "tone": "neutral",
+     "note": "Up from an anaemic 0.7% in 2025."
+    },
+    {
+     "label": "H1 growth",
+     "value": "just above 1%",
+     "as_of": "H1 2026",
+     "tone": "bad",
+     "note": "Tariffs weighing on spending, profits and hiring."
+    }
+   ],
+   "politics": {
+    "summary": "Carney Liberal government. US tariff policy and the unpicking of the North American trading bloc are the central economic problem; the response is defence and infrastructure spending alongside a rollback of previous environmental regulation.",
+    "next_election": "Next federal election due by 2029",
+    "watch": [
+     "The timing and size of the Carney budget",
+     "Whether inflation above 3% delays any further BoC easing",
+     "Tariff exposure in autos, steel, aluminium and energy"
+    ]
+   },
+   "markets_business": {
+    "ipo": "Canadian listing activity remains quiet relative to the US surge; the TSX venture pipeline is the more sensitive read on domestic risk appetite.",
+    "note": "Canada is the clearest case in this tracker of an external shock - tariffs - showing up simultaneously in inflation, the labour market and growth."
+   },
+   "sources": [
+    {
+     "label": "Bank of Canada: current conditions, July 2026",
+     "url": "https://www.bankofcanada.ca/publications/mpr/mpr-2026-07-15/canadian-conditions/"
+    },
+    {
+     "label": "Spring Economic Update 2026",
+     "url": "https://budget.canada.ca/update-miseajour/2026/report-rapport/overview-apercu-en.html"
+    },
+    {
+     "label": "StatCan: recent developments in the Canadian economy",
+     "url": "https://www150.statcan.gc.ca/n1/pub/36-28-0001/2026004/article/00005-eng.htm"
+    }
+   ]
+  },
+  "NGA": {
+   "policy_rate": {
+    "display": "26.5%",
+    "value": 26.5,
+    "as_of": "2026-05-20",
+    "action": "held",
+    "next_meeting": null,
+    "note": "Retained at the 305th MPC meeting, after a cut earlier in 2026."
+   },
+   "signals": [
+    {
+     "label": "Headline inflation",
+     "value": "15.1%",
+     "as_of": "Jan 2026",
+     "tone": "good",
+     "note": "Eleven consecutive months of decline, down from 31.7% in February 2024."
+    },
+    {
+     "label": "Inflation forecast",
+     "value": "12-16% for 2026",
+     "as_of": "CBN",
+     "tone": "neutral",
+     "note": "Conditional on FX stability and energy pass-through."
+    },
+    {
+     "label": "GDP growth forecast",
+     "value": "4.49-4.68% for 2026",
+     "as_of": "CBN / government",
+     "tone": "good",
+     "note": "The fastest projected growth of the five markets."
+    },
+    {
+     "label": "External reserves",
+     "value": "$51.0bn projected",
+     "as_of": "2026",
+     "tone": "good",
+     "note": "Up from about $45.0bn in 2025."
+    },
+    {
+     "label": "Naira",
+     "value": "N1,410-1,519 / US$",
+     "as_of": "2026 forecast range",
+     "tone": "neutral",
+     "note": "Moderate stability, sensitive to crude prices."
+    }
+   ],
+   "politics": {
+    "summary": "Tinubu administration. The 2023-24 shocks were policy choices - fuel subsidy removal and FX liberalisation - and 2026 is the disinflation on the far side of them.",
+    "next_election": "General election, February 2027",
+    "watch": [
+     "Whether disinflation survives the run-up to the 2027 election",
+     "Crude oil prices, which drive both reserves and the naira",
+     "A real policy rate that is still deeply restrictive at 26.5% against 15% inflation"
+    ]
+   },
+   "markets_business": {
+    "ipo": "NGX listing activity is thin and not covered by the global IPO trackers. The World Bank listed-company count in the historical charts is the usable long-run series.",
+    "note": "Nigeria is the one market here where the free equity-index providers carry no usable NGX All-Share series, so the live market panel shows it as unavailable rather than guessing."
+   },
+   "sources": [
+    {
+     "label": "CBN monetary policy decisions",
+     "url": "https://www.cbn.gov.ng/MonetaryPolicy/decisions.html"
+    },
+    {
+     "label": "CBN macroeconomic outlook 2026 (reported)",
+     "url": "https://guardian.ng/business-services/cbn-projects-4-49-growth-lower-inflation-in-2026-outlook/"
+    },
+    {
+     "label": "Nigeria economic review and outlook 2026 (CIS)",
+     "url": "https://cisinigeria.org/wp-content/uploads/2026/02/NIGERIA-ECONOMIC-REVIEW-AND-OUTLOOK-FOR-2026.pdf"
+    }
+   ]
+  }
+ },
+ "global": {
+  "ipo": "Global IPO proceeds tripled year on year in H1 2026, from $58.2bn to $178bn across 524 deals (up from 490). The concentration is extreme: the top 10 were almost all US, almost all AI-adjacent.",
+  "themes": [
+   "Tariffs are the shared shock. They read as inflation in the US, as a growth and labour hit in Canada, and as a tax-base risk in Ireland.",
+   "Four of the five central banks are on hold. Nigeria is the outlier on level (26.5%) and the only one with disinflation as its main story rather than sticky inflation.",
+   "Energy prices from the Middle East conflict have pushed up the 2026 inflation forecast in Europe."
+  ]
+ }
+}
