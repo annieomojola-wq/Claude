@@ -160,7 +160,9 @@ class YahooProvider(Provider):
     delay = 0.3
 
     def fetch(self, company: dict, days: int) -> Series:
-        rng = "6mo" if days <= 180 else "1y"
+        # Year-on-year needs a full year plus a margin, so 400 days must not
+        # silently ask for a 1y range and come back one day short.
+        rng = "6mo" if days <= 180 else "1y" if days <= 330 else "2y"
         symbol = urllib.parse.quote(self.symbol_for(company))
         url = (
             f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}"

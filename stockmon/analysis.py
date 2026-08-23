@@ -82,7 +82,13 @@ class Metrics:
     chg_3m_pct: Optional[float] = None
     high_3m: Optional[float] = None
     drawdown_pct: Optional[float] = None # from the 3-month high
-    spark: Optional[list[float]] = None  # ~90d of closes for the sparkline
+    yoy_pct: Optional[float] = None      # this month vs the same point a year ago
+    yoy_ref_date: Optional[str] = None
+    yoy_ref_price: Optional[float] = None
+    high_52w: Optional[float] = None
+    drawdown_52w_pct: Optional[float] = None
+    spark: Optional[list[float]] = None       # last ~90 closes, for the month view
+    spark_year: Optional[list[float]] = None  # ~weekly closes over 12 months
     note: Optional[str] = None
 
     def to_dict(self) -> dict:
@@ -126,8 +132,12 @@ def _compute_rolling(series: Series, spark_days: int) -> Metrics:
     if prev_ref is not None and prev_ref[0] != ref_date:
         prev_mom = pct_change(ref_price, prev_ref[1])
 
+    # A year of history is optional: without it the year-on-year figures are
+    # simply absent, and the month-on-month view still works.
+    yoy_ref = close_on_or_before(series, shift_months(anchor_date, -12))
+
     return _finish(
-        series, anchor_date, anchor_price, ref_date, ref_price, prev_mom, spark_days
+        series, anchor_date, anchor_price, ref_date, ref_price, prev_mom, spark_days, yoy_ref
     )
 
 
@@ -151,7 +161,13 @@ def _compute_calendar(series: Series, spark_days: int) -> Metrics:
     before_obs = last_close_of_month(series, before.year, before.month)
     prev_mom = pct_change(ref[1], before_obs[1]) if before_obs else None
 
-    return _finish(series, anchor[0], anchor[1], ref[0], ref[1], prev_mom, spark_days)
+    # The same completed month, one year earlier.
+    year_ago = shift_months(completed, -12)
+    yoy_ref = last_close_of_month(series, year_ago.year, year_ago.month)
+
+    return _finish(
+        series, anchor[0], anchor[1], ref[0], ref[1], prev_mom, spark_days, yoy_ref
+    )
 
 
 def _finish(
@@ -162,6 +178,7 @@ def _finish(
     ref_price: float,
     prev_mom: Optional[float],
     spark_days: int,
+    yoy_ref: Optional[tuple[dt.date, float]] = None,
 ) -> Metrics:
     window = [(d, c) for d, c in series if d <= anchor_date]
     recent = [c for d, c in window if d >= shift_months(anchor_date, -3)]
@@ -171,6 +188,13 @@ def _finish(
     chg_3m = pct_change(anchor_price, three_m[1]) if three_m else None
 
     spark = [c for d, c in window][-spark_days:]
+
+    year_window = [(d, c) for d, c in window if d >= shift_months(anchor_date, -12)]
+    high_52w = max((c for _, c in year_window), default=None)
+    # Only claim a 52-week high once there is close to a year behind it.
+    if yoy_ref is None:
+        high_52w = None
+    spark_year = _weekly(year_window) if yoy_ref is not None else None
 
     return Metrics(
         status=OK,
@@ -183,8 +207,29 @@ def _finish(
         chg_3m_pct=_r(chg_3m),
         high_3m=round(high_3m, 4) if high_3m is not None else None,
         drawdown_pct=_r(pct_change(anchor_price, high_3m)) if high_3m else None,
+        yoy_pct=_r(pct_change(anchor_price, yoy_ref[1])) if yoy_ref else None,
+        yoy_ref_date=yoy_ref[0].isoformat() if yoy_ref else None,
+        yoy_ref_price=round(yoy_ref[1], 4) if yoy_ref else None,
+        high_52w=round(high_52w, 4) if high_52w is not None else None,
+        drawdown_52w_pct=_r(pct_change(anchor_price, high_52w)) if high_52w else None,
         spark=[round(c, 4) for c in spark],
+        spark_year=spark_year,
     )
+
+
+def _weekly(observations: Series, step: int = 5) -> list[float]:
+    """Thin a daily series to roughly one point per trading week.
+
+    A year of daily closes is ~250 points per company; the sparkline cannot
+    show that much detail and the snapshot should not carry it.
+    """
+    if not observations:
+        return []
+    closes = [c for _, c in observations]
+    sampled = closes[::step]
+    if sampled[-1] != closes[-1]:
+        sampled.append(closes[-1])
+    return [round(c, 4) for c in sampled]
 
 
 def _r(v: Optional[float]) -> Optional[float]:

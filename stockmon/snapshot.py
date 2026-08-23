@@ -41,7 +41,7 @@ def build(
     provider: providers.Provider,
     exchanges: list[str] | None = None,
     basis: str = "rolling",
-    lookback_days: int = 200,
+    lookback_days: int = 500,
     cache_hours: float = 0.0,
     limit: int | None = None,
     progress=lambda msg: None,

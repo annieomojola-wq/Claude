@@ -29,6 +29,14 @@
 
   <section class="filters" role="group" aria-label="Filters — these scope every number below">
     <div class="field">
+      <span class="label" id="period-label">Compare</span>
+      <div class="seg" id="period-filter" role="group" aria-labelledby="period-label">
+        <button type="button" data-period="month" aria-pressed="true">Month on month</button>
+        <button type="button" data-period="year" aria-pressed="false">Year on year</button>
+      </div>
+    </div>
+
+    <div class="field">
       <span class="label" id="exchange-label">Exchange</span>
       <div class="seg" id="exchange-filter" role="group" aria-labelledby="exchange-label"></div>
     </div>
@@ -55,8 +63,8 @@
     <div class="field">
       <label class="label" for="sort">Sort</label>
       <select id="sort">
-        <option value="mom_pct">Biggest drop</option>
-        <option value="drawdown_pct">Furthest below 3-month high</option>
+        <option value="change">Biggest drop</option>
+        <option value="high" id="sort-high">Furthest below 3-month high</option>
         <option value="chg_3m_pct">Biggest 3-month fall</option>
         <option value="ticker">Ticker (A–Z)</option>
       </select>
@@ -108,16 +116,17 @@
             <th scope="col" data-sort="exchange">Exchange</th>
             <th scope="col" data-sort="price">Last close</th>
             <th scope="col" data-sort="mom_pct" aria-sort="ascending">Month on month</th>
+            <th scope="col" data-sort="yoy_pct">Year on year</th>
             <th scope="col" data-sort="prev_mom_pct">Previous month</th>
             <th scope="col" data-sort="chg_3m_pct">3 months</th>
-            <th scope="col" data-sort="drawdown_pct">From 3-month high</th>
+            <th scope="col" data-sort="drawdown_pct" id="th-high">From 3-month high</th>
             <th scope="col">Trend</th>
           </tr>
         </thead>
         <tbody id="tbody"></tbody>
       </table>
     </div>
-    <p class="empty" id="table-empty" hidden>No company matches these filters.</p>
+    <p class="empty" id="table-empty" hidden>Nothing to show for these filters.</p>
   </section>
 
   <footer class="foot" id="footer"></footer>

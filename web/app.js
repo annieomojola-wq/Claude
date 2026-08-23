@@ -10,11 +10,12 @@ const CHART_ROWS = 25;
 const state = {
   snapshot: null,
   filters: {
+    period: 'month',
     exchange: 'ALL',
     threshold: 0,
     sector: '',
     search: '',
-    sort: 'mom_pct',
+    sort: 'change',
     sustained: false,
     includeRisers: false,
   },
@@ -85,9 +86,12 @@ function formatStamp(iso) {
 /** Scope from the identity filters: exchange, sector, search. */
 function scoped(ignoreExchange = false) {
   const f = state.filters;
+  const key = period().changeKey;
   const needle = f.search.trim().toLowerCase();
   return (state.snapshot?.companies || []).filter((c) => {
-    if (c.status !== 'ok' || c.mom_pct === null) return false;
+    // A company with no figure for this period (too little history) is not
+    // "flat" - it is unknown, so it stays out of every count on the page.
+    if (c.status !== 'ok' || c[key] === null || c[key] === undefined) return false;
     if (!ignoreExchange && f.exchange !== 'ALL' && c.exchange !== f.exchange) return false;
     if (f.sector && c.sector !== f.sector) return false;
     if (needle && !(`${c.ticker} ${c.name}`.toLowerCase().includes(needle))) return false;
@@ -98,10 +102,11 @@ function scoped(ignoreExchange = false) {
 /** The scope plus the movement filters: threshold, sustained, risers. */
 function selected() {
   const f = state.filters;
+  const key = period().changeKey;
   return scoped().filter((c) => {
     if (f.sustained && !c.sustained) return false;
-    if (c.mom_pct >= 0) return f.includeRisers;
-    return -c.mom_pct >= f.threshold;
+    if (c[key] >= 0) return f.includeRisers;
+    return -c[key] >= f.threshold;
   });
 }
 
@@ -132,16 +137,20 @@ function showTooltip(company, event) {
     ['Last close', price(company.price, company.currency)],
     ['Month on month', `${arrow(company.mom_pct)} ${pct(company.mom_pct)}`],
     ['Previous month', company.prev_mom_pct === null ? '—' : `${arrow(company.prev_mom_pct)} ${pct(company.prev_mom_pct)}`],
+    ['Year on year', company.yoy_pct === null || company.yoy_pct === undefined
+      ? 'not enough history'
+      : `${arrow(company.yoy_pct)} ${pct(company.yoy_pct)}`],
     ['3 months', pct(company.chg_3m_pct)],
-    ['From 3-month high', pct(company.drawdown_pct)],
+    [period().high.column, pct(company[period().high.key])],
     [`vs ${formatDate(company.ref_date)}`, price(company.ref_price, company.currency)],
   ];
   for (const [key, value] of rows) {
     const row = el('div', 'tt-row');
     const k = el('span', 'k');
-    if (key === 'Month on month') {
+    if (key === 'Month on month' || key === 'Year on year') {
       const line = el('span', 'key-line');
-      line.style.background = company.mom_pct < 0 ? 'var(--down)' : 'var(--up)';
+      const keyed = key === 'Year on year' ? company.yoy_pct : company.mom_pct;
+      line.style.background = keyed < 0 ? 'var(--down)' : 'var(--up)';
       k.appendChild(line);
     }
     k.appendChild(document.createTextNode(key));
@@ -199,8 +208,10 @@ function renderMeta() {
   node.replaceChildren();
   const basis =
     meta.basis === 'calendar'
-      ? 'last completed calendar month vs the month before'
-      : 'latest close vs one month earlier';
+      ? (period().id === 'year'
+          ? 'last completed calendar month vs the same month a year before'
+          : 'last completed calendar month vs the month before')
+      : period().versus;
   const line1 = el('span');
   line1.appendChild(document.createTextNode('Prices to '));
   line1.appendChild(el('strong', null, formatDate(meta.latest_close)));
@@ -238,6 +249,34 @@ function renderBanners() {
     host.appendChild(banner);
   }
 
+  if (state.filters.period === 'year') {
+    const withYear = (state.snapshot.companies || []).filter(
+      (c) => c.yoy_pct !== null && c.yoy_pct !== undefined
+    ).length;
+    if (!withYear) {
+      const banner = el('div', 'banner is-error');
+      const text = el('div');
+      text.appendChild(el('strong', null, 'No year-on-year data in this snapshot. '));
+      text.appendChild(
+        document.createTextNode('It was built with less than a year of price history. Rebuild it with ')
+      );
+      text.appendChild(el('code', null, 'python3 fetch.py --provider stooq --lookback-days 500'));
+      text.appendChild(document.createTextNode(' and reload.'));
+      banner.appendChild(text);
+      host.appendChild(banner);
+    } else if (withYear < (state.snapshot.companies || []).length) {
+      const missing = (state.snapshot.companies || []).length - withYear;
+      host.appendChild(
+        el(
+          'div',
+          'banner',
+          `${missing} of ${state.snapshot.companies.length} companies have less than a year of history ` +
+            'and are left out of the year-on-year view.'
+        )
+      );
+    }
+  }
+
   if (meta.counts.errors) {
     const banner = el('div', 'banner is-error');
     const tickers = [...new Set((meta.errors || []).map((e) => e.ticker))].join(', ');
@@ -249,24 +288,31 @@ function renderBanners() {
 }
 
 function renderKpis() {
+  const p = period();
+  const key = p.changeKey;
   const rows = scoped();
-  const decliners = rows.filter((c) => c.mom_pct < 0);
-  const worst = decliners.length ? decliners.reduce((a, b) => (a.mom_pct <= b.mom_pct ? a : b)) : null;
-  const mid = median(rows.map((c) => c.mom_pct));
-  const sustained = rows.filter((c) => c.sustained);
+  const decliners = rows.filter((c) => c[key] < 0);
+  const worst = decliners.length ? decliners.reduce((a, b) => (a[key] <= b[key] ? a : b)) : null;
+  const mid = median(rows.map((c) => c[key]));
+  // On the month view, the repeat-offender signal is two months running. On the
+  // year view it is falling on both horizons - the year and the latest month.
+  const persistent =
+    p.id === 'year'
+      ? rows.filter((c) => c.yoy_pct < 0 && c.mom_pct !== null && c.mom_pct < 0)
+      : rows.filter((c) => c.sustained);
   const scopeNote =
     state.filters.exchange === 'ALL' ? 'all three exchanges' : state.snapshot.exchanges.find((e) => e.code === state.filters.exchange)?.name || state.filters.exchange;
 
   const tiles = [
     {
-      label: 'Falling month on month',
+      label: `Falling ${p.short}`,
       value: `${decliners.length}`,
       down: false,
       foot: `of ${rows.length} tracked · ${scopeNote}`,
     },
     {
       label: 'Biggest faller',
-      value: worst ? pct(worst.mom_pct) : '—',
+      value: worst ? pct(worst[key]) : '—',
       down: Boolean(worst),
       foot: worst ? `${worst.ticker} · ${worst.name}` : 'nothing is down',
     },
@@ -276,12 +322,19 @@ function renderKpis() {
       down: mid !== null && mid < 0,
       foot: 'typical company in this selection',
     },
-    {
-      label: 'Falling two months running',
-      value: `${sustained.length}`,
-      down: false,
-      foot: 'down this month and last month',
-    },
+    p.id === 'year'
+      ? {
+          label: 'Falling on both horizons',
+          value: `${persistent.length}`,
+          down: false,
+          foot: 'down over the year and the month',
+        }
+      : {
+          label: 'Falling two months running',
+          value: `${persistent.length}`,
+          down: false,
+          foot: 'down this month and last month',
+        },
   ];
 
   const host = $('kpis');
@@ -296,13 +349,16 @@ function renderKpis() {
 }
 
 function renderExchangeBars() {
+  const key = period().changeKey;
   const rows = scoped(true); // exchange bars always compare all three
   const host = $('exchange-bars');
   host.replaceChildren();
+  $('exchange-note').textContent =
+    `Share of the tracked constituents that are down ${period().short}.`;
 
   for (const exchange of state.snapshot.exchanges) {
     const mine = rows.filter((c) => c.exchange === exchange.code);
-    const down = mine.filter((c) => c.mom_pct < 0);
+    const down = mine.filter((c) => c[key] < 0);
     const share = mine.length ? (down.length / mine.length) * 100 : 0;
     const dimmed = state.filters.exchange !== 'ALL' && state.filters.exchange !== exchange.code;
 
@@ -329,36 +385,83 @@ function renderExchangeBars() {
   }
 }
 
-const METRICS = {
-  mom_pct: {
-    falls: 'Biggest month-on-month falls',
-    moves: 'Biggest month-on-month moves',
-    axis: 'Month-on-month change (%)',
-    lead: 'Longer bar means a steeper fall over the month. ',
+const PERIODS = {
+  month: {
+    id: 'month',
+    label: 'Month on month',
+    short: 'month on month',
+    changeKey: 'mom_pct',
+    sparkKey: 'spark',
+    versus: 'latest close vs one month earlier',
+    change: {
+      falls: 'Biggest month-on-month falls',
+      moves: 'Biggest month-on-month moves',
+      axis: 'Month-on-month change (%)',
+      lead: 'Longer bar means a steeper fall over the month. ',
+    },
+    high: {
+      key: 'drawdown_pct',
+      column: 'From 3-month high',
+      falls: 'Furthest below the 3-month high',
+      moves: 'Furthest below the 3-month high',
+      axis: 'Change from the 3-month high (%)',
+      lead: 'Longer bar means further below the peak of the last three months. ',
+    },
   },
-  drawdown_pct: {
-    falls: 'Furthest below the 3-month high',
-    moves: 'Furthest below the 3-month high',
-    axis: 'Change from the 3-month high (%)',
-    lead: 'Longer bar means further below the peak of the last three months. ',
-  },
-  chg_3m_pct: {
-    falls: 'Biggest three-month falls',
-    moves: 'Biggest three-month moves',
-    axis: 'Three-month change (%)',
-    lead: 'Longer bar means a steeper fall over the quarter. ',
+  year: {
+    id: 'year',
+    label: 'Year on year',
+    short: 'year on year',
+    changeKey: 'yoy_pct',
+    sparkKey: 'spark_year',
+    versus: 'latest close vs a year earlier',
+    change: {
+      falls: 'Biggest year-on-year falls',
+      moves: 'Biggest year-on-year moves',
+      axis: 'Year-on-year change (%)',
+      lead: 'Longer bar means a steeper fall over the year. ',
+    },
+    high: {
+      key: 'drawdown_52w_pct',
+      column: 'From 52-week high',
+      falls: 'Furthest below the 52-week high',
+      moves: 'Furthest below the 52-week high',
+      axis: 'Change from the 52-week high (%)',
+      lead: 'Longer bar means further below the peak of the last 12 months. ',
+    },
   },
 };
+
+const THREE_MONTH_SPEC = {
+  key: 'chg_3m_pct',
+  falls: 'Biggest three-month falls',
+  moves: 'Biggest three-month moves',
+  axis: 'Three-month change (%)',
+  lead: 'Longer bar means a steeper fall over the quarter. ',
+};
+
+/** The period the whole page is currently measuring. */
+function period() {
+  return PERIODS[state.filters.period] || PERIODS.month;
+}
+
+/** Which measure the chart plots and the list ranks by, given period + sort. */
+function chartSpec() {
+  const p = period();
+  if (state.filters.sort === 'high') return { ...p.high };
+  if (state.filters.sort === 'chg_3m_pct') return THREE_MONTH_SPEC;
+  return { key: p.changeKey, ...p.change };
+}
 
 function renderDropChart() {
   // The chart plots whatever the sort is ranking by, so the bars are always in
   // order. Sorting by ticker has no magnitude, so it falls back to the headline.
   const alphabetical = state.filters.sort === 'ticker';
-  const metric = METRICS[state.filters.sort] ? state.filters.sort : 'mom_pct';
-  const spec = METRICS[metric];
+  const spec = chartSpec();
+  const metric = spec.key;
   const all = sortRows(
     selected().filter((c) => c[metric] !== null && c[metric] !== undefined),
-    state.filters.sort,
+    alphabetical ? 'ticker' : metric,
     'asc'
   );
 
@@ -382,7 +485,7 @@ function renderDropChart() {
 
   const showsRisers = Boolean(risers.length && state.filters.includeRisers && !alphabetical);
   $('drops-title').textContent = alphabetical
-    ? 'Month-on-month change, A to Z'
+    ? `${period().label} change, A to Z`
     : showsRisers
       ? spec.moves
       : spec.falls;
@@ -397,7 +500,18 @@ function renderDropChart() {
     '\u25bc\u25bc marks a company down two months running. Every company is also in the table below.';
 
   if (!rows.length) {
-    host.appendChild(el('p', 'empty', 'No company matches these filters. Lower the minimum drop, or clear the search.'));
+    const noHistory =
+      state.filters.period === 'year' &&
+      !(state.snapshot.companies || []).some((c) => c.yoy_pct !== null && c.yoy_pct !== undefined);
+    host.appendChild(
+      el(
+        'p',
+        'empty',
+        noHistory
+          ? 'This snapshot does not go back a year, so there is nothing to compare against yet.'
+          : 'No company matches these filters. Lower the minimum drop, or clear the search.'
+      )
+    );
     return;
   }
 
@@ -478,7 +592,8 @@ function renderDropChart() {
 }
 
 function sparkline(company) {
-  const points = company.spark || [];
+  const p = period();
+  const points = company[p.sparkKey] || company.spark || [];
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('class', 'spark');
   svg.setAttribute('width', '92');
@@ -490,7 +605,8 @@ function sparkline(company) {
   svg.setAttribute(
     'aria-label',
     points.length
-      ? `Price trend, ${points.length} sessions, low ${low.toFixed(2)}, high ${high.toFixed(2)}`
+      ? `Price trend over the ${p.id === 'year' ? 'last 12 months' : 'last few months'}, `
+        + `low ${low.toFixed(2)}, high ${high.toFixed(2)}`
       : 'No trend data'
   );
   if (points.length < 2) return svg;
@@ -516,6 +632,15 @@ function sparkline(company) {
 }
 
 function renderTable() {
+  const high = period().high;
+  const th = $('th-high');
+  th.textContent = high.column;
+  th.dataset.sort = high.key;
+  if (state.tableSort.key === 'drawdown_pct' || state.tableSort.key === 'drawdown_52w_pct') {
+    state.tableSort.key = high.key;
+  }
+  syncTableHeaders();
+
   const rows = sortRows(selected(), state.tableSort.key, state.tableSort.dir);
   const body = $('tbody');
   body.replaceChildren();
@@ -550,7 +675,19 @@ function renderTable() {
     }
     tr.appendChild(mom);
 
-    for (const key of ['prev_mom_pct', 'chg_3m_pct', 'drawdown_pct']) {
+    const yoy = el('td', 'num');
+    if (company.yoy_pct === null || company.yoy_pct === undefined) {
+      const none = el('span', null, '—');
+      none.title = 'Less than a year of price history for this company';
+      yoy.appendChild(none);
+    } else {
+      yoy.appendChild(
+        el('span', `delta ${company.yoy_pct < 0 ? 'down' : 'up'}`, `${arrow(company.yoy_pct)} ${pct(company.yoy_pct)}`)
+      );
+    }
+    tr.appendChild(yoy);
+
+    for (const key of ['prev_mom_pct', 'chg_3m_pct', period().high.key]) {
       const cell = el('td', 'num');
       const v = company[key];
       cell.appendChild(el('span', v === null ? '' : `delta ${v < 0 ? 'down' : 'up'}`, pct(v)));
@@ -603,6 +740,20 @@ function buildSectorFilter() {
 }
 
 function wireControls() {
+  for (const button of document.querySelectorAll('#period-filter button')) {
+    button.addEventListener('click', () => {
+      state.filters.period = button.dataset.period;
+      for (const sibling of button.parentElement.children) {
+        sibling.setAttribute('aria-pressed', String(sibling === button));
+      }
+      // The "from high" sort means a different column per period.
+      $('sort-high').textContent = period().high.falls.replace('Furthest below the', 'Furthest below');
+      state.tableSort = { key: period().changeKey, dir: 'asc' };
+      renderBanners();
+      render();
+    });
+  }
+
   $('threshold').addEventListener('input', (event) => {
     state.filters.threshold = Number(event.target.value);
     const label = $('threshold-value');
@@ -628,7 +779,8 @@ function wireControls() {
 
   $('sort').addEventListener('change', (e) => {
     state.filters.sort = e.target.value;
-    state.tableSort = { key: e.target.value, dir: 'asc' };
+    const spec = chartSpec();
+    state.tableSort = { key: e.target.value === 'ticker' ? 'ticker' : spec.key, dir: 'asc' };
     syncTableHeaders();
     render();
   });

@@ -30,8 +30,8 @@ def main(argv: list[str] | None = None) -> int:
                              "calendar: last completed month vs the month before")
     parser.add_argument("--exchanges", nargs="*", default=None, metavar="CODE",
                         help=f"subset of {sorted(universe.EXCHANGES)} (default: all three)")
-    parser.add_argument("--lookback-days", type=int, default=200,
-                        help="days of history to pull (default: 200)")
+    parser.add_argument("--lookback-days", type=int, default=500,
+                        help="days of history to pull (default: 500, enough for year-on-year)")
     parser.add_argument("--cache-hours", type=float, default=0.0,
                         help="reuse cached history newer than this many hours (default: 0, always refetch)")
     parser.add_argument("--limit", type=int, default=None, help="only the first N companies (for testing)")

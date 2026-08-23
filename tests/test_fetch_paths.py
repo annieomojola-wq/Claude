@@ -69,6 +69,12 @@ class FetchPathTest(unittest.TestCase):
         providers.YahooProvider().fetch(self.lse, 120)
         self.assertIn("range=6mo", providers._get.urls[0])
 
+    def test_yahoo_year_on_year_lookback_asks_for_two_years(self):
+        # 500 days is more than a 1y range can serve.
+        providers._get = StubHTTP(json.dumps(YAHOO_JSON))
+        providers.YahooProvider().fetch(self.lse, 500)
+        self.assertIn("range=2y", providers._get.urls[0])
+
     def test_twelvedata_url_and_series(self):
         stub = StubHTTP(json.dumps(TWELVEDATA_JSON))
         providers._get = stub

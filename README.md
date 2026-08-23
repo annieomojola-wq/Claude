@@ -23,6 +23,21 @@ in a banner whenever it is showing demo data.
 Python 3.9+ is the only requirement. No pip installs, no build step, no
 JavaScript toolchain.
 
+## Two periods, one page
+
+The **Compare** control at the top switches the whole dashboard between
+**month on month** and **year on year**. Every number below it follows: the
+summary tiles, the per-exchange comparison, the ranked chart, the minimum-drop
+filter and the table's "from high" column. The table always carries both
+changes side by side, so a company down on the month but up on the year is
+visible at a glance.
+
+Year on year compares the latest close against the same point 12 months
+earlier (or, on the calendar basis, the last completed month against the same
+month a year before). It needs a year of history: `fetch.py` pulls 500 days by
+default, and any company with less than a year of prices is left out of the
+year view rather than shown as flat. The page says so when that happens.
+
 ## What "month on month" means here
 
 Two readings are supported, because mid-month they disagree:
@@ -36,12 +51,16 @@ Markets are shut on weekends and holidays, so the comparison always falls back
 to the last close **on or before** the target date rather than demanding an
 exact-date match.
 
+Year on year works the same way, 12 months back instead of one.
+
 Alongside the headline number, each company gets:
 
 - **Previous month** — the same calculation one month earlier, which is what
   drives the **▼▼ two months running** flag (down this month *and* last month).
 - **3 months** — the quarter-long move, to separate a blip from a slide.
-- **From 3-month high** — how far below its recent peak it now sits.
+- **From 3-month high** — how far below its recent peak it now sits, and
+  **from the 52-week high** in the year view.
+- **Year on year** — the 12-month move, always present in the table.
 
 ## Price sources
 
@@ -75,7 +94,7 @@ that names a ticker differently only needs an entry there:
 
 Useful flags: `--exchanges LSE NYSE` to narrow the run, `--cache-hours 6` to
 reuse recently fetched history (worth it on rate-limited providers),
-`--limit 10` for a quick test, `--lookback-days 400` for more history, and
+`--limit 10` for a quick test, `--lookback-days 800` for more history, and
 `--fail-under 90` to exit non-zero when a provider returns too little, so a
 scheduled run can fall back to another one.
 
@@ -147,14 +166,14 @@ fetch.py               build data/snapshot.json
 serve.py               static server for the dashboard
 export_html.py         bundle everything into one shareable HTML file
 stockmon/
-  analysis.py          month-on-month maths (both bases)
+  analysis.py          month-on-month and year-on-year maths (both bases)
   providers.py         stooq / yahoo / twelvedata / demo
   snapshot.py          orchestration, caching, error collection
   universe.py          watchlist loading and validation
 universe/*.json        the tracked companies, per exchange
 web/                   the dashboard (index.html, app.js, styles.css)
 data/snapshot.json     what the dashboard reads
-tests/                 52 tests, stdlib unittest
+tests/                 63 tests, stdlib unittest
 ```
 
 ## Tests
@@ -164,9 +183,10 @@ python3 -m unittest discover -s tests
 ```
 
 They cover the month-boundary edge cases (31 March → 28 February, year
-crossings, missing trading days), both comparison bases, every provider parser
-against recorded payloads, the URLs each provider builds, and the full snapshot
-build over the real watchlists with a stubbed provider.
+crossings, missing trading days), both comparison bases, the year-on-year
+comparison including the case where a company has less than a year of history,
+every provider parser against recorded payloads, the URLs each provider builds,
+and the full snapshot build over the real watchlists with a stubbed provider.
 
 ## Caveats worth knowing
 
