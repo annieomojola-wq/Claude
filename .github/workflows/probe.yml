@@ -1,0 +1,18 @@
+# Throwaway probe: answers "which spelling of this World Bank request works".
+# Delete once the governance series are wired up.
+name: Probe World Bank
+on:
+  push:
+    paths:
+      - "scripts/probe_worldbank.py"
+      - ".github/workflows/probe.yml"
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python3 scripts/probe_worldbank.py
