@@ -204,6 +204,9 @@ function render() {
 
 function renderMeta() {
   const meta = state.snapshot.meta;
+  $('subtitle').textContent =
+    'New York Stock Exchange · Nasdaq · London Stock Exchange — companies whose share price fell ' +
+    period().short;
   const node = $('meta');
   node.replaceChildren();
   const basis =
