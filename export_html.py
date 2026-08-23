@@ -74,13 +74,22 @@ def body_of(html: str, script_name: str, page: str) -> str:
     return re.sub(pattern, "", body).strip()
 
 
+def strip_nav(html: str) -> str:
+    """Remove the dashboard tab bar.
+
+    A single exported file has no sibling pages, so the tabs would be three
+    links to nothing. The site build keeps them and rewrites their targets.
+    """
+    return re.sub(r'\s*<nav class="tabs".*?</nav>', "", html, flags=re.S)
+
+
 def title_of(html: str, fallback: str) -> str:
     match = re.search(r"<title>(.*?)</title>", html, re.S)
     return match.group(1).strip() if match else fallback
 
 
 def build(root: str, snapshot_path: str, fragment: bool = False,
-          dashboard: str = "stocks") -> str:
+          dashboard: str = "stocks", keep_nav: bool = True) -> str:
     spec = DASHBOARDS[dashboard]
     with open(os.path.join(WEB, spec["html"])) as handle:
         html = handle.read()
@@ -95,12 +104,13 @@ def build(root: str, snapshot_path: str, fragment: bool = False,
     # </script> inside the data would close the tag early.
     payload = json.dumps(snapshot, separators=(",", ":")).replace("</", "<\\/")
     built = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    body = body_of(html, spec["js"], spec["html"])
 
     parts = [
         f"<title>{title_of(html, spec['title'])}</title>",
         FONTS,
         f"<style>\n{css}\n</style>",
-        body_of(html, spec["js"], spec["html"]),
+        body if keep_nav else strip_nav(body),
         f"<script>window.{spec['global']} = {payload};</script>",
         f"<script>\n{js}\n</script>",
         f"<!-- exported {built} -->",
@@ -132,7 +142,9 @@ def main() -> int:
     args.snapshot = args.snapshot or os.path.join(ROOT, spec["data"])
     args.out = args.out or os.path.join(ROOT, "dist", spec["out"])
 
-    page = build(ROOT, args.snapshot, fragment=args.fragment, dashboard=args.dashboard)
+    # A standalone file has no siblings for the tabs to point at.
+    page = build(ROOT, args.snapshot, fragment=args.fragment,
+                 dashboard=args.dashboard, keep_nav=False)
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     with open(args.out, "w") as handle:
         handle.write(page)

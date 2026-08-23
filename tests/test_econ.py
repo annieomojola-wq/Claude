@@ -427,6 +427,17 @@ class SiteBuildTests(unittest.TestCase):
         html = '<a href="econ.html" data-nav="economy" aria-current="page">Economy</a>'
         self.assertIn('aria-current="page"', self.build_site.rewrite_nav(html))
 
+    def test_standalone_exports_drop_the_tab_bar(self):
+        # A single exported file has no sibling pages for the tabs to reach.
+        import export_html
+        html = ('<header>x</header>\n  <nav class="tabs" aria-label="Dashboards">\n'
+                '    <a href="econ.html" data-nav="economy">Economy</a>\n'
+                '  </nav>\n<main>keep me</main>')
+        out = export_html.strip_nav(html)
+        self.assertNotIn("tabs", out)
+        self.assertIn("keep me", out)
+        self.assertIn("<header>x</header>", out)
+
     def test_every_dashboard_has_a_site_filename(self):
         import export_html
         self.assertEqual(set(self.build_site.SITE_NAMES), set(export_html.DASHBOARDS))
